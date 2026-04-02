@@ -55,6 +55,7 @@
 }
 
 body {
+    box-sizing: border-box;
     font-family: var(--font-main);
     color: var(--color-neutral-darkest);
     font-size: 16px;
@@ -71,6 +72,6 @@ section {
 /* Styles for Desktop devices */
 @media screen and (min-width: 1440px) {
     section {
-       padding: 80px 0;
+       padding: 72px 0;
     }
 }

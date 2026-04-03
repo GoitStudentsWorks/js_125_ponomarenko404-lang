@@ -22,7 +22,7 @@
   margin-bottom: 16px;
 }
 .furniture-text {
-  font-family: var(--font-secondary);
+  font-family: var(--font-main);
   font-weight: 400;
   font-size: 18px;
   line-height: 1.6;
@@ -88,12 +88,110 @@
   color: var(--color-white);
 }
 .category-btn.is-active {
-  outline: 2px solid var(--color-madang);
+  outline: 8px solid var(--color-madang);
   outline-offset: 0;
 }
-.load-more-btn {
-  min-width: 340px;
+.furniture-controls {
+  display: flex;
+  justify-content: center;
+}
+.furniture-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px 16px;
+  margin-bottom: 32px;
+}
+.furniture-card {
+  display: flex;
+  flex-direction: column;
+}
+.furniture-card-thumb {
+  margin-bottom: 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: var(--color-neutral-lightest);
+}
+.furniture-card-thumb img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+.furniture-card-title {
+  margin-bottom: 8px;
+  font-weight: 600;
+  font-family: var(--font-main);
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--color-neutral-darkest);
+}
+.furniture-colors {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+.furniture-color {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--color-scheme-1-border);
+}
+.furniture-card-price {
+  margin-bottom: 16px;
+  font-weight: 600;
+  font-family: var(--font-main);
+  font-size: 20px;
+  line-height: 1.6;
+  color: var(--color-neutral-darkest);
+}
+.details-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
   min-height: 46px;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 100px;
+  background-color: var(--color-neutral-lightest);
+  box-shadow:
+    0 1px 2px 0 rgba(8, 12, 9, 0.05),
+    inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05),
+    inset 0 0 0 1px rgba(8, 12, 9, 0.05);
+  font-family: var(--font-main);
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--color-scheme-1-text);
+  text-align: center;
+  transition:
+    background-color 250ms ease,
+    color 250ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+.details-btn:hover,
+.details-btn:focus {
+  box-shadow:
+    0 1px 2px 0 rgba(8, 12, 9, 0.05),
+    inset 0 -2px 1px 0 rgba(8, 12, 9, 0.05),
+    inset 0 0 0 1px rgba(8, 12, 9, 0.05);
+  background: rgba(8, 12, 9, 0.05);
+  opacity: 0.5;
+}
+.details-btn:active {
+  transform: translateY(1px);
+  box-shadow:
+    0 1px 2px 0 rgba(8, 12, 9, 0.05),
+    inset 0 1px 2px 0 rgba(0, 0, 0, 0.08),
+    inset 0 0 0 2px rgba(8, 12, 9, 0.1);
+}
+.load-more-btn {
+  display: block;
+  width: 100%;
+  max-width: 340px;
+  min-height: 46px;
+  margin: 0 auto;
   padding: 10px 24px;
   border: none;
   border-radius: 100px;
@@ -109,16 +207,38 @@
   font-size: 16px;
   line-height: 1.6;
   color: var(--color-white);
-  transition: background-color 250ms ease;
+  transition:
+    background-color 250ms ease,
+    transform 150ms ease,
+    box-shadow 150ms ease;
 }
 .load-more-btn:hover,
 .load-more-btn:focus {
-  background-color: var(--color-madang-light);
+  box-shadow:
+    0 1px 2px 0 rgba(8, 12, 9, 0.05),
+    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px rgba(8, 12, 9, 0.15),
+    inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
+    inset 0 32px 24px 0 rgba(255, 255, 255, 0.05);
+  background: #6b0609;
+  opacity: 0.5;
+}
+.load-more-btn:active {
+  background-color: var(--color-madang-dark);
+  transform: translateY(1px);
+  box-shadow:
+    0 1px 2px 0 rgba(8, 12, 9, 0.05),
+    inset 0 1px 2px 0 rgba(0, 0, 0, 0.25),
+    inset 0 0 0 3px rgba(8, 12, 9, 0.2),
+    inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
 }
 @media screen and (min-width: 768px) {
   .categories-list {
     grid-template-columns: repeat(4, 1fr);
     gap: 24px 24px;
+  }
+  .furniture-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 @media screen and (min-width: 1440px) {
@@ -129,7 +249,10 @@
     grid-template-columns: repeat(7, 1fr);
   }
   .load-more-btn {
-    min-width: 421px;
+    max-width: 421px;
     min-height: 46px;
+  }
+  .furniture-list {
+    grid-template-columns: repeat(4, 1fr);
   }
 }

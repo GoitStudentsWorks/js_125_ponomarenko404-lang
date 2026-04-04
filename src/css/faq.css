@@ -1,0 +1,106 @@
+.faq-section {
+    color: var(--color-scheme-1-text);
+}
+
+.faq-title {
+    margin-bottom: 32px;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    text-align: center;
+}
+
+.accordion-container {
+    width: 100%;
+}
+
+.faq-section .ac {
+    margin: 0;
+    border: none;
+    background: transparent;
+}
+
+.faq-section .ac .ac-trigger {
+    width: 100%;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    outline: none;
+    border-top: 1px solid var(--opacity-neutral-darkest-15);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.faq-section .ac:last-child {
+    border-bottom: 1px solid var(--opacity-neutral-darkest-15);
+}
+
+.faq-section .ac-trigger::after {
+    display: none;
+}
+
+.faq-section .ac.is-active .ac-trigger {
+    border-bottom: none;
+}
+
+.faq-section .faq-text {
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.6;
+    color: var(--color-neutral-darkest);
+    transition: color 0.25s ease;
+}
+
+.faq-section .ac.is-active .faq-text {
+    color: var(--color-scheme-1-text);
+}
+
+.faq-section .faq-icon {
+    flex-shrink: 0;
+    transition: transform 0.25s ease;
+}
+
+.faq-section .ac-panel {
+    background: transparent;
+}
+
+.faq-section .ac .ac-panel .ac-text {
+    margin: 0;
+    padding: 0 0 24px;
+    font-family: var(--font-main);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--color-scheme-1-text);
+}
+
+.faq-section .ac.is-active .faq-icon {
+    transform: rotate(180deg);
+}
+
+
+/* tablet */
+@media screen and (min-width: 768px) {
+    
+    .faq-section .ac-trigger {
+        padding: 21.5px 0;
+    }
+
+    .faq-section .faq-text {
+        font-family: var(--font-main);
+        font-size: 18px;
+        color: var(--color-scheme-1-text);
+    }
+
+}
+
+@media screen and (min-width: 1440px) {
+    .faq-title {
+        font-size: 48px;
+    }
+}

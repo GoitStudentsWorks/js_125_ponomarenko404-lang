@@ -75,4 +75,93 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     return foundCategory ? foundCategory._id : null;
   }
+   async function fetchFurnitures(page = 1, categoryName = 'all') {
+    const params = new URLSearchParams();
+    params.set('page', page);
+    params.set('limit', PER_PAGE);
+
+    if (categoryName !== 'all') {
+      const categoryId = getCategoryIdByName(categoryName);
+
+      if (categoryId) {
+        params.set('category', categoryId);
+      }
+    }
+
+    const response = await fetch(`${BASE_URL}/furnitures?${params.toString()}`);
+
+    if (!response.ok) {
+      throw new Error(`Помилка завантаження меблів: ${response.status}`);
+    }
+
+    const data = await response.json();
+    console.log('furnitures response:', data);
+
+    return {
+      items: Array.isArray(data.furnitures)
+        ? data.furnitures
+        : Array.isArray(data)
+        ? data
+        : [],
+      totalItems: data.totalItems ?? 0,
+      page: data.page ?? page,
+      limit: data.limit ?? PER_PAGE,
+    };
+  }
+
+  function createColorsMarkup(colors) {
+    if (!Array.isArray(colors) || colors.length === 0) {
+      return '';
+    }
+
+    return colors
+      .map(
+        color => `
+          <li class="furniture-color" style="background-color: ${color}"></li>
+        `
+      )
+      .join('');
+  }
+
+  function createFurnitureCardMarkup(item) {
+    const imageUrl =
+      Array.isArray(item.images) && item.images.length > 0 ? item.images[0] : '';
+
+    return `
+      <li class="furniture-card">
+        <div class="furniture-card-thumb">
+          <img
+            src="${imageUrl}"
+            alt="${item.name || 'Меблі'}"
+            width="335"
+            height="277"
+            loading="lazy"
+          />
+        </div>
+
+        <h3 class="furniture-card-title">${item.name || 'Без назви'}</h3>
+
+        <ul class="furniture-colors">
+          ${createColorsMarkup(item.color)}
+        </ul>
+
+        <p class="furniture-card-price">${item.price ?? 0} грн</p>
+
+        <button class="details-btn" type="button" data-id="${item._id || ''}">
+          Детальніше
+        </button>
+      </li>
+    `;
+  }
+
+  function renderFurnitureCards(items) {
+    refs.furnitureList.innerHTML = items.map(createFurnitureCardMarkup).join('');
+  }
+
+  function appendFurnitureCards(items) {
+    refs.furnitureList.insertAdjacentHTML(
+      'beforeend',
+      items.map(createFurnitureCardMarkup).join('')
+    );
+  }
 });

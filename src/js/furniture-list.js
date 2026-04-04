@@ -75,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     return foundCategory ? foundCategory._id : null;
   }
-   async function fetchFurnitures(page = 1, categoryName = 'all') {
+  async function fetchFurnitures(page = 1, categoryName = 'all') {
     const params = new URLSearchParams();
     params.set('page', page);
     params.set('limit', PER_PAGE);
@@ -101,8 +101,8 @@ document.addEventListener('DOMContentLoaded', async () => {
       items: Array.isArray(data.furnitures)
         ? data.furnitures
         : Array.isArray(data)
-        ? data
-        : [],
+          ? data
+          : [],
       totalItems: data.totalItems ?? 0,
       page: data.page ?? page,
       limit: data.limit ?? PER_PAGE,
@@ -163,5 +163,65 @@ document.addEventListener('DOMContentLoaded', async () => {
       'beforeend',
       items.map(createFurnitureCardMarkup).join('')
     );
+  }
+  async function loadInitialFurnitures() {
+    showLoader();
+    hideLoadMoreButton();
+
+    try {
+      currentPage = 1;
+      totalLoadedItems = 0;
+
+      const response = await fetchFurnitures(currentPage, currentCategory);
+      const items = response.items;
+      totalItems = response.totalItems;
+
+      renderFurnitureCards(items);
+      totalLoadedItems = items.length;
+
+      if (totalLoadedItems >= totalItems) {
+        hideLoadMoreButton();
+      } else {
+        showLoadMoreButton();
+      }
+    } catch (error) {
+      console.error('Помилка початкового завантаження меблів:', error);
+
+      refs.furnitureList.innerHTML = `
+        <li class="furniture-card">
+          <p class="furniture-card-title">
+            На жаль, не вдалося завантажити меблі. Спробуйте пізніше.
+          </p>
+        </li>
+      `;
+
+      hideLoadMoreButton();
+    } finally {
+      hideLoader();
+    }
+  }
+
+  async function onCategoryButtonClick(event) {
+    const button = event.currentTarget;
+    currentCategory = button.dataset.name;
+
+    resetActiveButton();
+    button.classList.add('is-active');
+
+    await loadInitialFurnitures();
+  }
+
+  function addCategoryListeners() {
+    refs.categoryButtons.forEach(button => {
+      button.addEventListener('click', onCategoryButtonClick);
+    });
+  }
+
+  try {
+    categories = await fetchCategories();
+    addCategoryListeners();
+    await loadInitialFurnitures();
+  } catch (error) {
+    console.error(error);
   }
 });

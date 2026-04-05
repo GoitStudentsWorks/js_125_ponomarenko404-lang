@@ -1,12 +1,23 @@
-/* .popular-products-title {
-justify-content: center;
-} */
+.popular-products {
+  padding: 60px 0;
+}
 
+.popular-products-title {
+  text-align: center;
+  margin-bottom: 40px;
+}
 
 .popular-wrapper {
   display: flex;
+  justify-content: center;
+}
+
+.slider-box {
+  display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  width: 100%;
+  max-width: 1200px;
 }
 
 .js-swiper-button-prev,
@@ -28,12 +39,44 @@ justify-content: center;
 .js-swiper-button-prev:hover,
 .js-swiper-button-next:hover {
   background-color: #000;
-  color: #fff;
   border-color: #000;
+  color: #fff;
 }
 
-.js-swiper-button-prev:active,
-.js-swiper-button-next:active {
-  transform: scale(0.95);
+.swiper {
+  width: 100%;
 }
 
+.popular-card {
+  text-align: center;
+}
+
+.popular-card img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-bottom: 12px;
+}
+
+
+
+
+@media screen and (min-width: 768px) {
+  .popular-products {
+    padding: 80px 0;
+  }
+
+  .slider-box {
+    gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .popular-products {
+    padding: 100px 0;
+  }
+
+  .slider-box {
+    gap: 24px;
+  }
+}

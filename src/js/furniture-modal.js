@@ -1,4 +1,6 @@
 import 'css-star-rating/css/star-rating.css';
+import iziToast from 'izitoast';
+import 'izitoast/dist/css/iziToast.min.css';
 
 const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
 
@@ -14,7 +16,25 @@ const modalColorOptions = document.querySelector('.color-options');
 const modalDescription = document.querySelector('.modal-description');
 const modalSize = document.querySelector('.modal-size');
 
-// ОКРУГЛЕННЯ РЕЙТИНГУ
+export const dataOrder = {
+  modelId: '',
+  color: '',
+};
+
+// ЛОАДЕР
+const loader = document.createElement('div');
+loader.classList.add('furniture-loader', 'is-hidden');
+loader.setAttribute('aria-hidden', 'true');
+modal.appendChild(loader);
+
+function showLoader() {
+  loader.classList.remove('is-hidden');
+}
+
+function hideLoader() {
+  loader.classList.add('is-hidden');
+}
+
 function roundRate(rate) {
   const decimal = rate % 1;
   if (decimal >= 0.3 && decimal <= 0.7) {
@@ -23,28 +43,29 @@ function roundRate(rate) {
   return Math.round(rate);
 }
 
-// ГЕНЕРАЦІЯ ЗІРОК через css-star-rating
 function createRatingMarkup(rate) {
   const rounded = roundRate(rate);
-  const valueClass = String(rounded).replace('.', '-');
+  const fullStars = Math.floor(rounded);
+  const hasHalf = rounded % 1 === 0.5;
+
+  let valueClass = `value-${Math.round(rounded)}`;
+  if (hasHalf) valueClass = `value-${fullStars} half`;
 
   return `
-    <div class="rating value-${valueClass} star-icon">
+    <div class="rating medium star-svg ${valueClass} label-hidden">
       <div class="star-container">
-        ${[1, 2, 3, 4, 5]
-          .map(() => `
+        ${[1, 2, 3, 4, 5].map(() => `
           <div class="star">
-            <i class="star-empty"></i>
-            <i class="star-half"></i>
-            <i class="star-filled"></i>
-          </div>`)
-          .join('')}
+            <svg class="star-empty"><use xlink:href="../svg/feedback.svg#icon-star-empty"></use></svg>
+            <svg class="star-half"><use xlink:href="../svg/feedback.svg#icon-half-star"></use></svg>
+            <svg class="star-filled"><use xlink:href="../svg/feedback.svg#icon-star"></use></svg>
+          </div>
+        `).join('')}
       </div>
     </div>
   `;
 }
 
-// ЗАПОВНИТИ МОДАЛКУ ДАНИМИ
 function fillModal(item) {
   modalMainImage.src = item.images[0] ?? '';
   modalMainImage.alt = item.name ?? '';
@@ -65,85 +86,68 @@ function fillModal(item) {
   modalPrice.textContent = `${item.price ?? 0} грн`;
   modalDescription.textContent = item.description ?? '';
   modalSize.textContent = `Розміри: ${item.sizes ?? ''}`;
-
   modalRating.innerHTML = createRatingMarkup(item.rate ?? 0);
 
- // КОЛЬОРИ
-modalColorOptions.innerHTML = item.color
-  .map((hex, i) => `
-    <label class="color-option-label">
-      <input 
-        type="checkbox" 
-        name="color" 
-        value="${hex}"
-        ${i === 0 ? 'checked' : ''}
-      />
-      <span class="color-swatch" style="background: ${hex}"></span>
-    </label>
-  `)
-  .join('');
+  modalColorOptions.innerHTML = item.color
+    .map((hex, i) => `
+      <label class="color-option-label">
+        <input type="checkbox" name="color" value="${hex}" ${i === 0 ? 'checked' : ''} />
+        <span class="color-swatch" style="background: ${hex}"></span>
+      </label>
+    `)
+    .join('');
 
-// Записуємо дефолтні значення — id товару і перший колір
-dataOrder.modelId = item._id;
-dataOrder.color = item.color[0];
+  dataOrder.modelId = item._id;
+  dataOrder.color = item.color[0];
 
-// Слухач на зміну кольору
-modalColorOptions.addEventListener('change', e => {
-  if (e.target.type === 'checkbox') {
-    modalColorOptions.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-      cb.checked = false;
-    });
-    e.target.checked = true;
-    dataOrder.color = e.target.value;
-  }
-});
+  modalColorOptions.addEventListener('change', e => {
+    if (e.target.type === 'checkbox') {
+      modalColorOptions.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+      e.target.checked = true;
+      dataOrder.color = e.target.value;
+    }
+  });
 }
 
-// ВІДКРИТИ МОДАЛКУ
-async function openModal(id) {
+export async function openModal(id) {
+  modal.classList.add('is-open');
+  document.body.style.overflow = 'hidden';
+  showLoader();
+
   try {
     const response = await fetch(`${BASE_URL}/furnitures/${id}`);
-    const item = await response.json();
 
+    if (!response.ok) {
+      throw new Error(`Помилка завантаження: ${response.status}`);
+    }
+
+    const item = await response.json();
     fillModal(item);
-    modal.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
   } catch (error) {
-    console.error('Помилка завантаження товару:', error);
+    closeModal();
+    iziToast.error({
+      title: 'Помилка',
+      message: 'Не вдалося завантажити інформацію про товар. Спробуйте пізніше.',
+      position: 'topRight',
+    });
+  } finally {
+    hideLoader();
   }
 }
 
-// ЗАКРИТИ МОДАЛКУ
-function closeModal() {
+export function closeModal() {
   modal.classList.remove('is-open');
   document.body.style.overflow = '';
 }
 
-// СЛУХАЧІ
 modalClose.addEventListener('click', closeModal);
 
 modal.addEventListener('click', e => {
   if (e.target === modal) closeModal();
 });
 
-document.addEventListener('keydown', e => {
+document.addEventListener('keyup', e => {
   if (e.key === 'Escape') closeModal();
 });
-
-document.addEventListener('click', e => {
-  const btn = e.target.closest('.details-btn');
-  if (!btn) return;
-  const id = btn.dataset.id;
-  if (id) openModal(id);
-});
-
-
-export const dataOrder = {
-  modelId: '',
-  color: '',
-};
-
-
-
-
-openModal('682f9bbf8acbdf505592ac36');

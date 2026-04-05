@@ -36,13 +36,22 @@
     background: var(--color-scheme-1-background);
     border-radius: 8px;   
     width: 335px;
-    height: 1155px;
+    /* height: 1155px; */
+    max-height: 90vh;
 
     padding: 64px 20px;
     position: relative;
 
-    overflow: hidden;
+    overflow-y: auto;
+    /* overflow: hidden; */
+    scrollbar-width: none;     /* Firefox */
+        -ms-overflow-style: none;     /* IE */
 }
+
+.modal-content::-webkit-scrollbar {
+    display: none;    /* Chrome, Safari */
+}
+
 /* CLOSE */
 .modal-close {
     position: absolute;
@@ -216,12 +225,16 @@
     .modal-content {
         padding: 64px 32px 32px;
         width: 704px;
-        height: 1091px;
+        /* height: 1091px; */
+        max-height: 90vh;
+        overflow-y: auto;
     }
 
     .modal-inner {
         gap: 20px;
-        width: 640px;
+        width: 100%;
+
+        /* width: 640px; */
         /* height: 995px;
         max-width: 1318px; */
     }
@@ -245,7 +258,7 @@
     .modal-colors {
         width: 400px;
     }
-    
+
     .color-swatch {
         width: 32px;
         height: 32px;
@@ -258,7 +271,7 @@
 
     .modal-description {
         width: 421px;
-        height: 78px;
+        /* height: 78px; */
     }
     
         .modal-order-btn {
@@ -338,7 +351,7 @@
 
     .modal-description {
         width: 358px;
-        height: 104px;
+        /* height: 104px; */
     }
 
     .modal-size {

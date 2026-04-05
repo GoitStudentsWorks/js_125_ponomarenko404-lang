@@ -1,7 +1,7 @@
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import axios from 'axios';
-// import { dataOrders } from './furniture-modal.js';
+import { dataOrders } from './furniture-modal.js';
 
 const form = document.getElementById('order-modal-form');
 const orderName = document.getElementById('order-name');
@@ -27,6 +27,16 @@ const isModalOpen = () => backdrop && !backdrop.classList.contains('is-hidden');
 
 const syncBodyScrollLock = () => {
   document.body.classList.toggle('order-modal-open', isModalOpen());
+};
+
+export const openOrderModal = () => {
+  if (!backdrop) {
+    return;
+  }
+
+  backdrop.classList.remove('is-hidden');
+  backdrop.setAttribute('aria-hidden', 'false');
+  syncBodyScrollLock();
 };
 
 const closeOrderModal = () => {
@@ -150,8 +160,8 @@ if (form) {
       name: orderName.value.trim(),
       phone: orderPhone.value.trim(),
       comment: orderComment.value.trim(),
-      modelId: dataOrders.modelId,
-      color: dataOrders.color,
+      modelId: dataOrders.modelId.trim(),
+      color: dataOrders.color.trim(),
     };
 
     try {

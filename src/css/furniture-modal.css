@@ -1,16 +1,3 @@
-:root {
-    --color-scheme-1-background: var(--color-white);
-    --color-madang: #6b0609;
-    --color-neutral: #838584;
-    --color-scheme-1-text: var(--color-neutral-darkest);
-    --opacity-neutral-darkest-5: rgba(8, 12, 9, 0.05);
-    --opacity-neutral-darkest-15: rgba(8, 12, 9, 0.15);
-    --opacity-white-5: rgba(255, 255, 255, 0.05);
-}
-:root {
-    --font-family: "Raleway", sans-serif;
-}
-
 /* BACKDROP */
 .modal {
     position: fixed;
@@ -98,7 +85,7 @@
     gap: 8px;
     margin-top: 10px;
     width: 295px;
-    height: 197px;
+    height: auto;
     
 }
 
@@ -157,9 +144,34 @@
     height: 32px;
     display: flex;
     gap: 10px;
+    align-items: center;
 }
 
-.color-options span {
+.color-option-label {
+    display: inline-block;
+    cursor: pointer;
+}
+
+.color-option-label input[type="checkbox"] {
+    display: none;
+}
+
+.color-swatch {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: block;
+    border: 2px solid transparent;
+    outline: 2px solid transparent;
+    transition: outline 200ms ease;
+}
+
+.color-option-label input[type="checkbox"]:checked+.color-swatch {
+    outline: 4px solid var(--color-neutral);
+    outline-offset: 2px;
+}
+
+/* .color-options span {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -170,7 +182,7 @@
 
 .color-options span.active {    
     border: 4px solid var(--color-neutral);
-}
+} */
 
 .modal-description {
     font-family: var(--font-family);
@@ -186,7 +198,7 @@
 }
 
 /* BUTTON */
-.modal-order-btn {
+/* .modal-order-btn {
     padding: 10px 24px;
     width: 295px;
     height: 46px;
@@ -197,7 +209,7 @@
     background: var(--color-madang);
     color: white;
     cursor: pointer;
-}
+} */
 
 /* TABLET */
 @media (min-width: 768px) {
@@ -221,7 +233,7 @@
     
     .modal-thumbnails {
         width: 640px;
-        height: 197px;
+        height: auto;
         gap: 16px;
     }
 
@@ -233,11 +245,16 @@
     .modal-colors {
         width: 400px;
     }
-
-    .color-options span {
+    
+    .color-swatch {
         width: 32px;
         height: 32px;
     }
+
+    /* .color-options span {
+        width: 32px;
+        height: 32px;
+    } */
 
     .modal-description {
         width: 421px;
@@ -295,8 +312,8 @@
     }
 
     .modal-thumbnails img {
-        width: 120px;
-        height: 100px;
+        width: 282px;
+        height: 197px;
         flex: 0 0 auto;
     }
 

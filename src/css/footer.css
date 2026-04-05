@@ -34,7 +34,14 @@
 .footer-icon {
     fill: var(--color-white);
 }
+.logo-footer.interactive:hover,
+.logo-footer.interactive:focus {
+    opacity: 0.5;
+}
 
+.footer-nav-link.interactive {
+    text-decoration: none;
+}
 .footer-media-link {
     transition: opacity 0.3s ease;
 }
@@ -100,4 +107,5 @@
         display: contents;
     }
 }
+
 

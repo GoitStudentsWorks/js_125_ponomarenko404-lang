@@ -27,6 +27,8 @@ const popularProducts = [
 ];
 
 const popularList = document.querySelector('.js-popular-list');
+const prevBtn = document.querySelector('.js-swiper-button-prev');
+const nextBtn = document.querySelector('.js-swiper-button-next');
 
 function renderPopularProducts() {
   popularList.innerHTML = '';
@@ -52,10 +54,10 @@ new Swiper('.popular-swiper', {
   loop: true,
 
   navigation: {
-    nextEl: '.js-swiper-button-next',
-    prevEl: '.js-swiper-button-prev',
+  nextEl: nextBtn,
+  prevEl: prevBtn,
   },
-
+  
   pagination: {
     el: '.js-swiper-pagination',
     clickable: true,

@@ -6,3 +6,4 @@ import './js/header.js';
 import './js/furniture-list';
 import './js/faq.js';
 
+import './js/popular-products'

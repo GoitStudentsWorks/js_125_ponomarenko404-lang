@@ -1,0 +1,39 @@
+/* .popular-products-title {
+justify-content: center;
+} */
+
+
+.popular-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.js-swiper-button-prev,
+.js-swiper-button-next {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: #fff;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.js-swiper-button-prev:hover,
+.js-swiper-button-next:hover {
+  background-color: #000;
+  color: #fff;
+  border-color: #000;
+}
+
+.js-swiper-button-prev:active,
+.js-swiper-button-next:active {
+  transform: scale(0.95);
+}
+

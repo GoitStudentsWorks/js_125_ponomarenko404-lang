@@ -20,9 +20,10 @@
     color:  var(--color-neutral-darkest);
     margin-bottom: 80px;
 }
-.review-card {display: flex;
-    flex-wrap: wrap;
-    gap: 24px;
+.review-card {
+   display: flex;
+   flex-direction: column;
+   gap: 24px;
 }
 .rating {
     justify-content: start;
@@ -54,6 +55,7 @@
     font-weight: 700;
     font-size: 16px;
     line-height: 1.6;
+    margin-top: auto;
 }
 
 
@@ -65,12 +67,14 @@
 
 
 .feedback-item {
-    min-height: 48px;
+    min-height: 52px;
+    margin-top: 48px;
 }
 
 
 .swiper-pagination {
    text-align: start;
+   pointer-events: none;
 }
 
 
@@ -79,15 +83,19 @@
 }
 
 
-button {
+.swiper-button-prev, .swiper-button-next {
+    position: relative;
+    color: var(--color-neutral-darkest);
     border: 1px solid var( --opacity-neutral-darkest-15);
     border-radius: 100px;
     padding: 12px;
     width: 48px;
     height: 48px;
-    cursor: pointer;
+    cursor: auto;
     background-color: var(--color-neutral-lightest);
-    transition: transform 250ms ease;
+    transition: opacity 0.3s ease,
+        box-shadow 0.3s ease;
+        cursor: pointer;
 }
 
 
@@ -102,12 +110,6 @@ button:active {
     background-color: var(--color-madang);
     color: var(--color-white);
 }
-
-
-button svg {
-    pointer-events: none;
-}
-
 
 .swiper-button-prev, .swiper-button-next {
     position: relative;

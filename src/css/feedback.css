@@ -1,0 +1,136 @@
+.feedback-section{
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+.feedback-title {
+    font-family: var(--font-main);
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: 0.01em;
+    color: var(--color-neutral-darkest);
+    margin-bottom: 24px;
+}
+
+
+.feedback-subtitle {
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.6;
+    color:  var(--color-neutral-darkest);
+    margin-bottom: 80px;
+}
+.review-card {display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+.rating {
+    justify-content: start;
+}
+
+
+.star-container {
+    flex-wrap: wrap;
+    gap: 4px;
+}
+
+
+ .rating.value-4 .star-container .star svg,
+ .rating.value-3 .star-container .star svg,
+ .rating.value-5 .star-container .star svg {
+    fill: var(--color-neutral-darkest);
+}
+
+
+.review-text {
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 1.6;
+    padding-right: 48px;
+}
+
+
+.review-name {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+.feedback-list {
+    display: flex;
+    gap: 16px;
+    justify-content: end;
+}
+
+
+.feedback-item {
+    min-height: 48px;
+    margin-top: 48px;
+}
+
+
+.swiper-pagination {
+   text-align: start;
+}
+
+
+.swiper-pagination-bullet {
+    background-color: var(--swiper-pagination-bullet-inactive-color, #6b0609);
+}
+
+
+button {
+    border: 1px solid var( --opacity-neutral-darkest-15);
+    border-radius: 100px;
+    padding: 12px;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    background-color: var(--color-neutral-lightest);
+    transition: opacity 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+button:hover,
+button:focus {
+    background-color: var(--color-madang-light);
+    color: var(--color-white);
+}
+
+
+button:active {
+    background-color: var(--color-madang);
+    color: var(--color-white);
+}
+
+
+button svg {
+    pointer-events: none;
+}
+
+
+.swiper-button-prev, .swiper-button-next {
+    position: relative;
+    color: var(--color-neutral-darkest);
+}
+
+
+@media screen and (min-width: 768px) {
+.feedback-section{
+    padding-top: 32px;
+    padding-bottom: 32px;
+}
+}
+
+
+@media screen and (min-width: 1440px) {
+    .feedback-section{
+    padding-top: 64px;
+    padding-bottom: 64px;
+}
+  .feedback-title {
+    font-size: 48px;
+  }
+}

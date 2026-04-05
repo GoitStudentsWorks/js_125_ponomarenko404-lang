@@ -66,7 +66,6 @@
 
 .feedback-item {
     min-height: 48px;
-    margin-top: 48px;
 }
 
 
@@ -88,8 +87,7 @@ button {
     height: 48px;
     cursor: pointer;
     background-color: var(--color-neutral-lightest);
-    transition: opacity 0.3s ease,
-        box-shadow 0.3s ease;
+    transition: transform 250ms ease;
 }
 
 

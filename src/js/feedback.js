@@ -70,6 +70,10 @@ async function loadReviews() {
         disabledClass: "swiper-button-disabled",
       },
     });
+    document.querySelectorAll('.swiper-button-next, .swiper-button-prev')
+  .forEach(btn => {
+    btn.addEventListener('click', () => btn.blur());
+  });
   } catch (err) {
     console.error("Помилка завантаження відгуків:", err);
   }

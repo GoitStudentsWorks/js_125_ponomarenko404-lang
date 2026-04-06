@@ -1,4 +1,3 @@
-import 'css-star-rating/css/star-rating.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
 import { openOrderModal } from './order-modal.js';
@@ -38,9 +37,15 @@ function hideLoader() {
 
 function roundRate(rate) {
   const decimal = rate % 1;
+
   if (decimal >= 0.3 && decimal <= 0.7) {
     return Math.floor(rate) + 0.5;
   }
+
+  if (decimal >= 0.8 || decimal <= 0.2) {
+    return Math.round(rate);
+  }
+
   return Math.round(rate);
 }
 
@@ -49,20 +54,21 @@ function createRatingMarkup(rate) {
   const fullStars = Math.floor(rounded);
   const hasHalf = rounded % 1 === 0.5;
 
-  let valueClass = `value-${Math.round(rounded)}`;
-  if (hasHalf) valueClass = `value-${fullStars} half`;
-
   return `
-    <div class="rating medium star-svg ${valueClass} label-hidden">
-      <div class="star-container">
-        ${[1, 2, 3, 4, 5].map(() => `
-          <div class="star">
-            <svg class="star-empty"><use xlink:href="../svg/feedback.svg#icon-star-empty"></use></svg>
-            <svg class="star-half"><use xlink:href="../svg/feedback.svg#icon-half-star"></use></svg>
-            <svg class="star-filled"><use xlink:href="../svg/feedback.svg#icon-star"></use></svg>
-          </div>
-        `).join('')}
-      </div>
+    <div class="rating">
+      ${[1, 2, 3, 4, 5].map(i => {
+        let iconId;
+        if (i <= fullStars) {
+          iconId = 'icon-star';
+        } else if (i === fullStars + 1 && hasHalf) {
+          iconId = 'icon-half-star';
+        } else {
+          iconId = 'icon-star-empty';
+        }
+        return `<span class="star">
+          <svg><use href="/svg/feedback.svg#${iconId}"></use></svg>
+        </span>`;
+      }).join('')}
     </div>
   `;
 }

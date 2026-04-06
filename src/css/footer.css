@@ -35,6 +35,24 @@
     fill: var(--color-white);
 }
 
+.interactive {
+    transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
+
+.interactive:hover,
+.interactive:focus {
+    opacity: 0.5;
+    outline: none;
+}
+
+.logo-footer.interactive:hover,
+.logo-footer.interactive:focus {
+    opacity: 0.5;
+}
+
+.footer-nav-link.interactive {
+    text-decoration: none;
+}
 .footer-media-link {
     transition: opacity 0.3s ease;
 }
@@ -100,4 +118,5 @@
         display: contents;
     }
 }
+
 

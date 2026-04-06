@@ -1,6 +1,7 @@
 import 'css-star-rating/css/star-rating.css';
 import iziToast from 'izitoast';
 import 'izitoast/dist/css/iziToast.min.css';
+import { openOrderModal } from './order-modal.js';
 
 const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
 
@@ -150,4 +151,11 @@ modal.addEventListener('click', e => {
 
 document.addEventListener('keyup', e => {
   if (e.key === 'Escape') closeModal();
+});
+
+const orderBtn = document.querySelector('.modal-order-btn');
+
+orderBtn.addEventListener('click', () => {
+  closeModal();
+  openOrderModal();
 });

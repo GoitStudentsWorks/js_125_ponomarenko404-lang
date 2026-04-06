@@ -22,4 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+<<<<<<< HEAD
+
+
+pullrequests-list.text 
+
+=======
 pullrequests-list.txt
+>>>>>>> fac8028a33417911bc0f3b81adb42cd6b016b974

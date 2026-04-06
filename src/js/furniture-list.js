@@ -1,3 +1,5 @@
+import { openModal } from './furniture-modal.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
   const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
   const PER_PAGE = 8;
@@ -7,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     categoryButtons: document.querySelectorAll('.category-btn'),
     loadMoreBtn: document.querySelector('.load-more-btn'),
     loader: document.querySelector('.furniture-loader'),
+    modal: document.querySelector('#modal'),
   };
 
   if (
@@ -75,6 +78,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     return foundCategory ? foundCategory._id : null;
   }
+
   async function fetchFurnitures(page = 1, categoryName = 'all') {
     const params = new URLSearchParams();
     params.set('page', page);
@@ -171,6 +175,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     );
   }
 
+  function openModalById(id) {
+  openModal(id);
+}
+
   async function loadInitialFurnitures() {
     showLoader();
     hideLoadMoreButton();
@@ -223,7 +231,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadInitialFurnitures();
   }
 
-  async function onLoadMoreClick() {
+  async function onLoadMoreClick(event) {
+    event.currentTarget.blur();
+
     showLoader();
 
     try {
@@ -260,6 +270,16 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
 
     refs.loadMoreBtn.addEventListener('click', onLoadMoreClick);
+
+    refs.furnitureList.addEventListener('click', event => {
+      const btn = event.target.closest('.details-btn');
+      if (!btn) return;
+
+      const id = btn.dataset.id;
+      if (!id) return;
+
+      openModalById(id);
+    });
   }
 
   try {

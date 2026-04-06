@@ -66,7 +66,7 @@ function createRatingMarkup(rate) {
           iconId = 'icon-star-empty';
         }
         return `<span class="star">
-          <svg><use href="/svg/feedback.svg#${iconId}"></use></svg>
+          <svg><use xlink:href="./svg/feedback.svg#${iconId}"></use></svg>
         </span>`;
       }).join('')}
     </div>

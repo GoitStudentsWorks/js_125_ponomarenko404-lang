@@ -2,7 +2,7 @@
   padding: 40px 0;
 }
 
-.popular-products-title {
+.popular-products .popular-products-title {
   margin-bottom: 24px;
   font-family: "Raleway", sans-serif;
   font-weight: 700;
@@ -12,25 +12,25 @@
   color: #080c09;
 }
 
-.slider-container {
+.popular-products .slider-container {
   position: relative;
   width: 100%;
   padding-bottom: 72px;
 }
 
-.popular-swiper {
+.popular-products .popular-swiper {
   width: 100%;
   overflow: hidden;
 }
 
-.popular-card {
+.popular-products .popular-card {
   display: flex;
   flex-direction: column;
   width: 100%;
   text-align: left;
 }
 
-.popular-card-image {
+.popular-products .popular-card-image {
   display: block;
   width: 100%;
   height: 240px;
@@ -39,11 +39,11 @@
   margin-bottom: 16px;
 }
 
-.popular-card-content {
+.popular-products .popular-card-content {
   margin-bottom: 16px;
 }
 
-.popular-card-title {
+.popular-products .popular-card-title {
   margin-bottom: 16px;
   font-family: "Raleway", sans-serif;
   font-weight: 600;
@@ -52,7 +52,7 @@
   color: #080c09;
 }
 
-.popular-card-colors {
+.popular-products .popular-card-colors {
   display: flex;
   gap: 12px;
   margin-bottom: 16px;
@@ -60,14 +60,14 @@
   list-style: none;
 }
 
-.popular-card-color {
+.popular-products .popular-card-color {
   width: 20px;
   height: 20px;
   border-radius: 50%;
   flex-shrink: 0;
 }
 
-.popular-card-price {
+.popular-products .popular-card-price {
   font-family: "Raleway", sans-serif;
   font-weight: 600;
   font-size: 18px;
@@ -75,27 +75,31 @@
   color: #080c09;
 }
 
-.popular-card-btn {
+.popular-products .popular-card-btn {
   width: 100%;
   height: 46px;
   border: none;
   border-radius: 100px;
-  background: #ead0ca;
   font-family: "Raleway", sans-serif;
   font-weight: 500;
   font-size: 16px;
   color: #080c09;
   cursor: pointer;
+  background-color:#ead0ca;;
 }
 
-.js-swiper-pagination {
+.popular-products .popular-card-btn:hover {
+  background-color: #eab9ae;
+}
+
+.popular-products .js-swiper-pagination {
   position: absolute;
   left: 0;
   bottom: 18px;
   transform: none;
 }
 
-.js-swiper-pagination .swiper-pagination-bullet {
+.popular-products .js-swiper-pagination .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
   margin-right: 6px;
@@ -103,12 +107,12 @@
   opacity: 1;
 }
 
-.js-swiper-pagination .swiper-pagination-bullet-active {
+.popular-products .js-swiper-pagination .swiper-pagination-bullet-active {
   background-color: #7a1f1f;
 }
 
-.js-swiper-button-prev,
-.js-swiper-button-next {
+.popular-products .js-swiper-button-prev,
+.popular-products .js-swiper-button-next {
   position: absolute;
   bottom: 0;
   width: 44px;
@@ -122,15 +126,15 @@
   cursor: pointer;
 }
 
-.js-swiper-button-prev {
+.popular-products .js-swiper-button-prev {
   right: 56px;
 }
 
-.js-swiper-button-next {
+.popular-products .js-swiper-button-next {
   right: 0;
 }
 
-.popular-card-error {
+.popular-products .popular-card-error {
   padding: 40px 0;
   text-align: center;
   font-family: "Raleway", sans-serif;
@@ -139,133 +143,135 @@
   color: #080c09;
 }
 
+
 @media screen and (min-width: 768px) {
   .popular-products {
     padding: 64px 0;
   }
 
-  .popular-products-title {
+  .popular-products .popular-products-title {
     margin-bottom: 32px;
     font-size: 40px;
   }
 
-  .slider-container {
+  .popular-products .slider-container {
     padding-bottom: 56px;
   }
 
-  .popular-card {
+  .popular-products .popular-card {
     height: 100%;
   }
 
-  .popular-card-image {
+  .popular-products .popular-card-image {
     height: 260px;
     margin-bottom: 12px;
   }
 
-  .popular-card-content {
+  .popular-products .popular-card-content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     margin-bottom: 12px;
   }
 
-  .popular-card-title {
+  .popular-products .popular-card-title {
     margin-bottom: 8px;
     font-size: 18px;
     line-height: 1.4;
   }
 
-  .popular-card-colors {
+  .popular-products .popular-card-colors {
     gap: 12px;
     margin-bottom: 8px;
   }
 
-  .popular-card-color {
+  .popular-products .popular-card-color {
     width: 24px;
     height: 24px;
   }
 
-  .popular-card-price {
+  .popular-products .popular-card-price {
     font-size: 18px;
     line-height: 1.4;
     margin-bottom: 16px;
   }
 
-  .popular-card-btn {
+  .popular-products .popular-card-btn {
     height: 42px;
     margin-top: auto;
     font-size: 16px;
   }
 
-  .js-swiper-pagination {
+  .popular-products .js-swiper-pagination {
     bottom: 12px;
   }
 
-  .js-swiper-button-prev,
-  .js-swiper-button-next {
+  .popular-products .js-swiper-button-prev,
+  .popular-products .js-swiper-button-next {
     width: 40px;
     height: 40px;
   }
 
-  .js-swiper-button-prev {
+  .popular-products .js-swiper-button-prev {
     right: 48px;
   }
 }
 
+
 @media screen and (min-width: 1440px) {
-  .popular-products-title {
+  .popular-products .popular-products-title {
     font-size: 48px;
   }
 
-  .slider-container {
+  .popular-products .slider-container {
     padding-bottom: 60px;
   }
 
-  .popular-card-image {
+  .popular-products .popular-card-image {
     height: 256px;
     margin-bottom: 16px;
   }
 
-  .popular-card-content {
+  .popular-products .popular-card-content {
     margin-bottom: 16px;
   }
 
-  .popular-card-title {
+  .popular-products .popular-card-title {
     font-size: 18px;
     line-height: 1.6;
     min-height: 58px;
   }
 
-  .popular-card-colors {
+  .popular-products .popular-card-colors {
     gap: 16px;
     margin-bottom: 8px;
   }
 
-  .popular-card-color {
+  .popular-products .popular-card-color {
     width: 24px;
     height: 24px;
   }
 
-  .popular-card-price {
+  .popular-products .popular-card-price {
     font-size: 20px;
     line-height: 1.6;
   }
 
-  .popular-card-btn {
+  .popular-products .popular-card-btn {
     height: 46px;
   }
 
-  .js-swiper-pagination {
+  .popular-products .js-swiper-pagination {
     bottom: 18px;
   }
 
-  .js-swiper-button-prev,
-  .js-swiper-button-next {
+  .popular-products .js-swiper-button-prev,
+  .popular-products .js-swiper-button-next {
     width: 48px;
     height: 48px;
   }
 
-  .js-swiper-button-prev {
+  .popular-products .js-swiper-button-prev {
     right: 64px;
   }
 }

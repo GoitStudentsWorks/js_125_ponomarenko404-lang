@@ -141,6 +141,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             width="335"
             height="277"
             loading="lazy"
+            decoding="async"
           />
         </div>
 
@@ -176,8 +177,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function openModalById(id) {
-  openModal(id);
-}
+    openModal(id);
+  }
 
   async function loadInitialFurnitures() {
     showLoader();

@@ -76,7 +76,8 @@
     background-color: var(--swiper-pagination-bullet-inactive-color, #6b0609);
 }
 
-.swiper-button-prev, .swiper-button-next {
+.swiper-button-prev, 
+.swiper-button-next {
     position: relative;
     color: var(--color-neutral-darkest);
     border: 1px solid var( --opacity-neutral-darkest-15);
@@ -88,7 +89,7 @@
     background-color: var(--color-neutral-lightest);
     transition: opacity 0.3s ease,
         box-shadow 0.3s ease;
-        cursor: pointer;
+    cursor: pointer;
 }
 
 .swiper-button-prev:hover,

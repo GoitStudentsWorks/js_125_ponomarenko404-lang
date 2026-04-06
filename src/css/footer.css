@@ -34,7 +34,12 @@
 .footer-icon {
     fill: var(--color-white);
 }
+.logo-footer.interactive:hover,
+.logo-footer.interactive:focus {
+    opacity: 0.5;
+}
 
+<<<<<<< HEAD
 .interactive {
     transition: opacity 0.3s ease, box-shadow 0.3s ease;
 }
@@ -50,6 +55,8 @@
     opacity: 0.5;
 }
 
+=======
+>>>>>>> 9ea2aa4a81d1c689eae1362fd17f9c129c70fb7d
 .footer-nav-link.interactive {
     text-decoration: none;
 }

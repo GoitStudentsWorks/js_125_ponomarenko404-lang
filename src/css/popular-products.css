@@ -1,15 +1,10 @@
-.popular-products {
-  padding: 40px 0;
-}
-
 .popular-products .popular-products-title {
   margin-bottom: 24px;
-  font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 32px;
   line-height: 1.2;
   text-align: center;
-  color: #080c09;
+  color: var(--color-neutral-darkest);
 }
 
 .popular-products .slider-container {
@@ -26,7 +21,7 @@
 .popular-products .popular-card {
   display: flex;
   flex-direction: column;
-  width: 100%;
+  height: auto;
   text-align: left;
 }
 
@@ -40,22 +35,24 @@
 }
 
 .popular-products .popular-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   margin-bottom: 16px;
 }
 
 .popular-products .popular-card-title {
-  margin-bottom: 16px;
-  font-family: "Raleway", sans-serif;
+  margin: 0 0 16px;
   font-weight: 600;
   font-size: 18px;
   line-height: 1.3;
-  color: #080c09;
+  color: var(--color-neutral-darkest);
 }
 
 .popular-products .popular-card-colors {
   display: flex;
   gap: 12px;
-  margin-bottom: 16px;
+  margin: 0 0 16px;
   padding: 0;
   list-style: none;
 }
@@ -65,50 +62,40 @@
   height: 20px;
   border-radius: 50%;
   flex-shrink: 0;
+  border: 1px solid rgba(8, 12, 9, 0.08);
 }
 
 .popular-products .popular-card-price {
-  font-family: "Raleway", sans-serif;
+  margin: 0;
   font-weight: 600;
   font-size: 18px;
   line-height: 1.3;
-  color: #080c09;
+  color: var(--color-neutral-darkest);
 }
 
 .popular-products .popular-card-btn {
   width: 100%;
-  height: 46px;
-  border: none;
-  border-radius: 100px;
-  font-family: "Raleway", sans-serif;
-  font-weight: 500;
-  font-size: 16px;
-  color: #080c09;
-  cursor: pointer;
-  background-color:#ead0ca;;
-}
-
-.popular-products .popular-card-btn:hover {
-  background-color: #eab9ae;
+  min-height: 46px;
 }
 
 .popular-products .js-swiper-pagination {
   position: absolute;
   left: 0;
   bottom: 18px;
-  transform: none;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .popular-products .js-swiper-pagination .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
-  margin-right: 6px;
+  margin: 0 6px 0 0;
   background-color: #d9d9d9;
   opacity: 1;
 }
 
 .popular-products .js-swiper-pagination .swiper-pagination-bullet-active {
-  background-color: #7a1f1f;
+  background-color: var(--color-madang-dark, #7a1f1f);
 }
 
 .popular-products .js-swiper-button-prev,
@@ -123,7 +110,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+  color: var(--color-neutral-darkest);
 }
 
 .popular-products .js-swiper-button-prev {
@@ -134,21 +121,21 @@
   right: 0;
 }
 
+.popular-products .js-swiper-button-prev.swiper-button-disabled,
+.popular-products .js-swiper-button-next.swiper-button-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
 .popular-products .popular-card-error {
   padding: 40px 0;
   text-align: center;
-  font-family: "Raleway", sans-serif;
   font-size: 20px;
   line-height: 1.3;
-  color: #080c09;
+  color: var(--color-neutral-darkest);
 }
 
-
 @media screen and (min-width: 768px) {
-  .popular-products {
-    padding: 64px 0;
-  }
-
   .popular-products .popular-products-title {
     margin-bottom: 32px;
     font-size: 40px;
@@ -158,30 +145,20 @@
     padding-bottom: 56px;
   }
 
-  .popular-products .popular-card {
-    height: 100%;
-  }
-
   .popular-products .popular-card-image {
     height: 260px;
-    margin-bottom: 12px;
   }
 
   .popular-products .popular-card-content {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
     margin-bottom: 12px;
   }
 
   .popular-products .popular-card-title {
     margin-bottom: 8px;
-    font-size: 18px;
     line-height: 1.4;
   }
 
   .popular-products .popular-card-colors {
-    gap: 12px;
     margin-bottom: 8px;
   }
 
@@ -191,15 +168,11 @@
   }
 
   .popular-products .popular-card-price {
-    font-size: 18px;
     line-height: 1.4;
-    margin-bottom: 16px;
   }
 
   .popular-products .popular-card-btn {
-    height: 42px;
-    margin-top: auto;
-    font-size: 16px;
+    min-height: 42px;
   }
 
   .popular-products .js-swiper-pagination {
@@ -217,7 +190,6 @@
   }
 }
 
-
 @media screen and (min-width: 1440px) {
   .popular-products .popular-products-title {
     font-size: 48px;
@@ -229,7 +201,6 @@
 
   .popular-products .popular-card-image {
     height: 256px;
-    margin-bottom: 16px;
   }
 
   .popular-products .popular-card-content {
@@ -237,19 +208,12 @@
   }
 
   .popular-products .popular-card-title {
-    font-size: 18px;
     line-height: 1.6;
     min-height: 58px;
   }
 
   .popular-products .popular-card-colors {
     gap: 16px;
-    margin-bottom: 8px;
-  }
-
-  .popular-products .popular-card-color {
-    width: 24px;
-    height: 24px;
   }
 
   .popular-products .popular-card-price {
@@ -258,7 +222,7 @@
   }
 
   .popular-products .popular-card-btn {
-    height: 46px;
+    min-height: 46px;
   }
 
   .popular-products .js-swiper-pagination {

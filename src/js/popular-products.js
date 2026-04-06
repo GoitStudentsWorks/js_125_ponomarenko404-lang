@@ -7,50 +7,90 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
+const BASE_ORIGIN = 'https://furniture-store-v2.b.goit.study';
 
 const list = document.querySelector('.js-popular-list');
 const prevBtn = document.querySelector('.js-swiper-button-prev');
 const nextBtn = document.querySelector('.js-swiper-button-next');
 const paginationEl = document.querySelector('.js-swiper-pagination');
 
+let popularSwiper = null;
+
+function getImageUrl(path) {
+  if (!path) return '';
+  return path.startsWith('http') ? path : `${BASE_ORIGIN}${path}`;
+}
+
+function getColors(colors) {
+  if (!Array.isArray(colors) || !colors.length) {
+    return ['#d9b8ae', '#d7a36d', '#201815'];
+  }
+
+  return colors;
+}
+
 async function fetchPopularProducts() {
   const { data } = await axios.get(`${BASE_URL}/furnitures?type=popular`);
-  return data.furnitures;
+  return data.furnitures || [];
 }
 
 function renderProducts(products) {
   const markup = products
-    .map(
-      product => `
+    .map(product => {
+      const cleanName = product.name.replaceAll('"', '');
+
+      const colorsMarkup = getColors(product.color)
+        .map(
+          color => `
+            <li
+              class="popular-card-color"
+              style="background-color: ${color};"
+            ></li>
+          `
+        )
+        .join('');
+
+      return `
         <li class="swiper-slide popular-card">
           <img
             class="popular-card-image"
-            src="${product.images?.[0] || ''}"
-            alt="${product.name}"
+            src="${getImageUrl(product.images?.[0])}"
+            alt="${cleanName}"
             loading="lazy"
           />
-          <h3 class="popular-card-title">${product.name}</h3>
-          <ul class="popular-card-colors">
-            <li class="popular-card-color" style="background-color: #d9b8ae;"></li>
-            <li class="popular-card-color" style="background-color: #d7a36d;"></li>
-            <li class="popular-card-color" style="background-color: #201815;"></li>
-          </ul>
-          <p class="popular-card-price">${product.price} грн</p>
-          <button class="popular-card-btn" type="button">Детальніше</button>
+
+          <div class="popular-card-content">
+            <h3 class="popular-card-title">${cleanName}</h3>
+
+            <ul class="popular-card-colors">
+              ${colorsMarkup}
+            </ul>
+
+            <p class="popular-card-price">${product.price} грн</p>
+          </div>
+
+          <button class="popular-card-btn btn-white" type="button">
+            Детальніше
+          </button>
         </li>
-      `
-    )
+      `;
+    })
     .join('');
 
   list.innerHTML = markup;
 }
 
 function initSwiper() {
-  new Swiper('.popular-swiper', {
+  if (popularSwiper) {
+    popularSwiper.destroy(true, true);
+  }
+
+  popularSwiper = new Swiper('.popular-swiper', {
     modules: [Navigation, Pagination],
     loop: false,
     slidesPerView: 1,
-    spaceBetween: 16,
+    spaceBetween: 20,
+    speed: 500,
     navigation: {
       nextEl: nextBtn,
       prevEl: prevBtn,
@@ -73,11 +113,21 @@ function initSwiper() {
 }
 
 async function initPopularProducts() {
+  if (!list || !prevBtn || !nextBtn || !paginationEl) return;
+
   try {
     const products = await fetchPopularProducts();
+
+    if (!products.length) {
+      list.innerHTML =
+        '<li class="popular-card-error">Популярні товари відсутні.</li>';
+      return;
+    }
+
     renderProducts(products);
     initSwiper();
-  } catch {
+  } catch (error) {
+    console.error(error);
     list.innerHTML =
       '<li class="popular-card-error">Не вдалося завантажити товари.</li>';
   }

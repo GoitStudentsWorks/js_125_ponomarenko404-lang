@@ -97,7 +97,16 @@
     opacity: 0.5;
 }
 
+/* сommon nav style footer/header */
+.interactive {
+    transition: opacity 0.3s ease, box-shadow 0.3s ease;
+}
 
+.interactive:hover,
+.interactive:focus {
+    opacity: 0.5;
+    outline: none;
+}
 
 body {
     /* box-sizing: border-box; */

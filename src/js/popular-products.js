@@ -1,77 +1,86 @@
+import axios from 'axios';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
 
-import sofaOslo from '../img/popular-products/desktop/sofa-oslo.jpg';
-import sofaTivoli from '../img/popular-products/desktop/sofa-tivoli.jpg';
-import sofaSiena from '../img/popular-products/desktop/sofa-siena.jpg';
-import sofaParma from '../img/popular-products/desktop/sofa-parma.jpg';
-import sofaMilano from '../img/popular-products/desktop/sofa-milano.jpg';
-import sofaVerona from '../img/popular-products/desktop/sofa-verona.jpg';
-import decorForma from '../img/popular-products/desktop/decor-forma.jpg';
-import atelier from '../img/popular-products/desktop/atelier.jpg';
-
-
-const popularProducts = [
-  { name: 'Софа Oslo', price: '9 999 грн', image: sofaOslo },
-  { name: 'Софа Tivoli', price: '11 999 грн', image: sofaTivoli },
-  { name: 'Софа Siena', price: '14 999 грн', image: sofaSiena },
-  { name: 'Кутовий диван Parma', price: '19 999 грн', image: sofaParma },
-  { name: 'Кутовий диван Milano', price: '24 999 грн', image: sofaMilano },
-  { name: 'Кутовий диван Verona', price: '22 999 грн', image: sofaVerona },
-  { name: 'Декор-колекція Forma', price: '2 499 грн', image: decorForma },
-  { name: 'Скульптурна серія Atelier', price: '3 799 грн', image: atelier },
-];
-
-const popularList = document.querySelector('.js-popular-list');
+const list = document.querySelector('.js-popular-list');
 const prevBtn = document.querySelector('.js-swiper-button-prev');
 const nextBtn = document.querySelector('.js-swiper-button-next');
+const paginationEl = document.querySelector('.js-swiper-pagination');
 
-function renderPopularProducts() {
-  popularList.innerHTML = '';
+async function fetchPopularProducts() {
+  const { data } = await axios.get(`${BASE_URL}/furnitures?type=popular`);
+  return data.furnitures;
+}
 
-  popularProducts.forEach(product => {
-    const item = document.createElement('li');
-    item.classList.add('swiper-slide', 'popular-card');
+function renderProducts(products) {
+  const markup = products
+    .map(
+      product => `
+        <li class="swiper-slide popular-card">
+          <img
+            class="popular-card-image"
+            src="${product.images?.[0] || ''}"
+            alt="${product.name}"
+            loading="lazy"
+          />
+          <h3 class="popular-card-title">${product.name}</h3>
+          <ul class="popular-card-colors">
+            <li class="popular-card-color" style="background-color: #d9b8ae;"></li>
+            <li class="popular-card-color" style="background-color: #d7a36d;"></li>
+            <li class="popular-card-color" style="background-color: #201815;"></li>
+          </ul>
+          <p class="popular-card-price">${product.price} грн</p>
+          <button class="popular-card-btn" type="button">Детальніше</button>
+        </li>
+      `
+    )
+    .join('');
 
-    item.innerHTML = `
-      <img src="${product.image}" alt="${product.name}" />
-      <h3>${product.name}</h3>
-      <p>${product.price}</p>
-    `;
+  list.innerHTML = markup;
+}
 
-    popularList.appendChild(item);
+function initSwiper() {
+  new Swiper('.popular-swiper', {
+    modules: [Navigation, Pagination],
+    loop: false,
+    slidesPerView: 1,
+    spaceBetween: 16,
+    navigation: {
+      nextEl: nextBtn,
+      prevEl: prevBtn,
+    },
+    pagination: {
+      el: paginationEl,
+      clickable: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+        spaceBetween: 16,
+      },
+      1440: {
+        slidesPerView: 4,
+        spaceBetween: 20,
+      },
+    },
   });
 }
 
-renderPopularProducts();
+async function initPopularProducts() {
+  try {
+    const products = await fetchPopularProducts();
+    renderProducts(products);
+    initSwiper();
+  } catch {
+    list.innerHTML =
+      '<li class="popular-card-error">Не вдалося завантажити товари.</li>';
+  }
+}
 
-new Swiper('.popular-swiper', {
-  modules: [Navigation, Pagination],
-  loop: true,
-
-  navigation: {
-  nextEl: nextBtn,
-  prevEl: prevBtn,
-  },
-  
-  pagination: {
-    el: '.js-swiper-pagination',
-    clickable: true,
-  },
-
-  slidesPerView: 1,
-  spaceBetween: 20,
-
-  breakpoints: {
-    768: {
-      slidesPerView: 2,
-    },
-    1440: {
-      slidesPerView: 3,
-    },
-  },
-});
+initPopularProducts();

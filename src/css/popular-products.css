@@ -1,82 +1,271 @@
 .popular-products {
-  padding: 60px 0;
+  padding: 40px 0;
 }
 
 .popular-products-title {
+  margin-bottom: 24px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
   text-align: center;
-  margin-bottom: 40px;
+  color: #080c09;
 }
 
-.popular-wrapper {
-  display: flex;
-  justify-content: center;
-}
-
-.slider-box {
-  display: flex;
-  align-items: center;
-  gap: 16px;
+.slider-container {
+  position: relative;
   width: 100%;
-  max-width: 1200px;
+  padding-bottom: 72px;
+}
+
+.popular-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.popular-card {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  text-align: left;
+}
+
+.popular-card-image {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.popular-card-content {
+  margin-bottom: 16px;
+}
+
+.popular-card-title {
+  margin-bottom: 16px;
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #080c09;
+}
+
+.popular-card-colors {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.popular-card-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.popular-card-price {
+  font-family: "Raleway", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  color: #080c09;
+}
+
+.popular-card-btn {
+  width: 100%;
+  height: 46px;
+  border: none;
+  border-radius: 100px;
+  background: #ead0ca;
+  font-family: "Raleway", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #080c09;
+  cursor: pointer;
+}
+
+.js-swiper-pagination {
+  position: absolute;
+  left: 0;
+  bottom: 18px;
+  transform: none;
+}
+
+.js-swiper-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin-right: 6px;
+  background-color: #d9d9d9;
+  opacity: 1;
+}
+
+.js-swiper-pagination .swiper-pagination-bullet-active {
+  background-color: #7a1f1f;
 }
 
 .js-swiper-button-prev,
 .js-swiper-button-next {
+  position: absolute;
+  bottom: 0;
   width: 44px;
   height: 44px;
+  border: 1px solid #d8d8d8;
   border-radius: 50%;
-  border: 1px solid #ccc;
   background-color: #fff;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.js-swiper-button-prev:hover,
-.js-swiper-button-next:hover {
-  background-color: #000;
-  border-color: #000;
-  color: #fff;
+.js-swiper-button-prev {
+  right: 56px;
 }
 
-.swiper {
-  width: 100%;
+.js-swiper-button-next {
+  right: 0;
 }
 
-.popular-card {
+.popular-card-error {
+  padding: 40px 0;
   text-align: center;
+  font-family: "Raleway", sans-serif;
+  font-size: 20px;
+  line-height: 1.3;
+  color: #080c09;
 }
-
-.popular-card img {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 12px;
-}
-
-
-
 
 @media screen and (min-width: 768px) {
   .popular-products {
-    padding: 80px 0;
+    padding: 64px 0;
   }
 
-  .slider-box {
-    gap: 20px;
+  .popular-products-title {
+    margin-bottom: 32px;
+    font-size: 40px;
+  }
+
+  .slider-container {
+    padding-bottom: 56px;
+  }
+
+  .popular-card {
+    height: 100%;
+  }
+
+  .popular-card-image {
+    height: 260px;
+    margin-bottom: 12px;
+  }
+
+  .popular-card-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    margin-bottom: 12px;
+  }
+
+  .popular-card-title {
+    margin-bottom: 8px;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .popular-card-colors {
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+
+  .popular-card-color {
+    width: 24px;
+    height: 24px;
+  }
+
+  .popular-card-price {
+    font-size: 18px;
+    line-height: 1.4;
+    margin-bottom: 16px;
+  }
+
+  .popular-card-btn {
+    height: 42px;
+    margin-top: auto;
+    font-size: 16px;
+  }
+
+  .js-swiper-pagination {
+    bottom: 12px;
+  }
+
+  .js-swiper-button-prev,
+  .js-swiper-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .js-swiper-button-prev {
+    right: 48px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .popular-products {
-    padding: 100px 0;
+  .popular-products-title {
+    font-size: 48px;
   }
 
-  .slider-box {
-    gap: 24px;
+  .slider-container {
+    padding-bottom: 60px;
+  }
+
+  .popular-card-image {
+    height: 256px;
+    margin-bottom: 16px;
+  }
+
+  .popular-card-content {
+    margin-bottom: 16px;
+  }
+
+  .popular-card-title {
+    font-size: 18px;
+    line-height: 1.6;
+    min-height: 58px;
+  }
+
+  .popular-card-colors {
+    gap: 16px;
+    margin-bottom: 8px;
+  }
+
+  .popular-card-color {
+    width: 24px;
+    height: 24px;
+  }
+
+  .popular-card-price {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .popular-card-btn {
+    height: 46px;
+  }
+
+  .js-swiper-pagination {
+    bottom: 18px;
+  }
+
+  .js-swiper-button-prev,
+  .js-swiper-button-next {
+    width: 48px;
+    height: 48px;
+  }
+
+  .js-swiper-button-prev {
+    right: 64px;
   }
 }

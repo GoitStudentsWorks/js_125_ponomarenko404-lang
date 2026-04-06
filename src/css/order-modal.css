@@ -10,6 +10,7 @@
   transition:
     opacity 250ms ease,
     visibility 250ms ease;
+  contain: layout style paint;
 }
 
 body.order-modal-open {
@@ -122,18 +123,15 @@ body.order-modal-open {
 .order-modal__input:hover::placeholder,
 .order-modal__textarea:hover::placeholder,
 .order-modal__input:focus::placeholder,
-.order-modal__textarea:focus::placeholder,
-.order-modal__input:focus,
-.order-modal__textarea:focus,
-.order-modal__input:hover,
-.order-modal__textarea:hover {
+.order-modal__textarea:focus::placeholder {
   color: #080c09;
 }
 
-.order-modal__input:focus,
-.order-modal__textarea:focus,
 .order-modal__input:hover,
-.order-modal__textarea:hover {
+.order-modal__textarea:hover,
+.order-modal__input:focus,
+.order-modal__textarea:focus {
+  color: #080c09;
   border: 1px solid rgba(8, 12, 9, 0.4);
 }
 

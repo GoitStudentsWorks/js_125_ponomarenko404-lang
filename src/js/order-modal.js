@@ -1,73 +1,106 @@
-import iziToast from 'izitoast';
-import 'izitoast/dist/css/iziToast.min.css';
-import axios from 'axios';
-import { dataOrders } from './furniture-modal.js';
+import { dataOrder as dataOrders } from './furniture-modal.js';
 
-const form = document.getElementById('order-modal-form');
-const orderName = document.getElementById('order-name');
-const orderPhone = document.getElementById('order-phone');
-const orderComment = document.getElementById('order-comment');
-const backdrop = document.querySelector('.order-modal-backdrop');
-const closeButton = document.getElementById('order-modal-close');
+let iziToast = null;
+let axios = null;
+
+const loadDependencies = async () => {
+  if (!iziToast) {
+    const iziToastModule = await import('izitoast');
+    iziToast = iziToastModule.default;
+    await import('izitoast/dist/css/iziToast.min.css');
+  }
+  if (!axios) {
+    const axiosModule = await import('axios');
+    axios = axiosModule.default;
+  }
+};
+
+const elements = {
+  form: null,
+  orderName: null,
+  orderPhone: null,
+  orderComment: null,
+  backdrop: null,
+  closeButton: null,
+};
+
+const initElements = () => {
+  elements.form = document.getElementById('order-modal-form');
+  elements.orderName = document.getElementById('order-name');
+  elements.orderPhone = document.getElementById('order-phone');
+  elements.orderComment = document.getElementById('order-comment');
+  elements.backdrop = document.querySelector('.order-modal-backdrop');
+  elements.closeButton = document.getElementById('order-modal-close');
+};
+
 const ORDER_REQUEST_URL = 'https://furniture-store-v2.b.goit.study/api/orders';
 
-if (localStorage.getItem('orderPhone')) {
-  orderPhone.value = localStorage.getItem('orderPhone');
-}
+const debounce = (fn, delay = 150) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => fn(...args), delay);
+  };
+};
 
-if (localStorage.getItem('orderName')) {
-  orderName.value = localStorage.getItem('orderName');
-}
+const restoreFormFromStorage = () => {
+  const phone = localStorage.getItem('orderPhone');
+  const name = localStorage.getItem('orderName');
+  const comment = localStorage.getItem('orderComment');
 
-if (localStorage.getItem('orderComment')) {
-  orderComment.value = localStorage.getItem('orderComment');
-}
+  if (phone && elements.orderPhone) elements.orderPhone.value = phone;
+  if (name && elements.orderName) elements.orderName.value = name;
+  if (comment && elements.orderComment) elements.orderComment.value = comment;
+};
 
-const isModalOpen = () => backdrop && !backdrop.classList.contains('is-hidden');
+const isModalOpen = () =>
+  elements.backdrop && !elements.backdrop.classList.contains('is-hidden');
 
 const syncBodyScrollLock = () => {
   document.body.classList.toggle('order-modal-open', isModalOpen());
 };
 
 export const openOrderModal = () => {
-  if (!backdrop) {
+  if (!elements.backdrop) {
     return;
   }
 
-  backdrop.classList.remove('is-hidden');
-  backdrop.setAttribute('aria-hidden', 'false');
+  elements.backdrop.classList.remove('is-hidden');
+  elements.backdrop.setAttribute('aria-hidden', 'false');
   syncBodyScrollLock();
 };
 
 const closeOrderModal = () => {
-  if (!backdrop) {
+  if (!elements.backdrop) {
     return;
   }
 
-  backdrop.classList.add('is-hidden');
-  backdrop.setAttribute('aria-hidden', 'true');
+  elements.backdrop.classList.add('is-hidden');
+  elements.backdrop.setAttribute('aria-hidden', 'true');
   syncBodyScrollLock();
 };
 
-if (backdrop) {
-  backdrop.addEventListener('click', event => {
-    if (event.target === backdrop) {
-      closeOrderModal();
-    }
-  });
+const initModalHandlers = () => {
+  if (elements.backdrop) {
+    elements.backdrop.addEventListener('click', event => {
+      if (event.target === elements.backdrop) {
+        closeOrderModal();
+      }
+    });
 
-  const backdropObserver = new MutationObserver(syncBodyScrollLock);
-  backdropObserver.observe(backdrop, {
-    attributes: true,
-    attributeFilter: ['class'],
-  });
+    const backdropObserver = new MutationObserver(syncBodyScrollLock);
+    backdropObserver.observe(elements.backdrop, {
+      attributes: true,
+      attributeFilter: ['class'],
+    });
 
-  syncBodyScrollLock();
-}
+    syncBodyScrollLock();
+  }
 
-if (closeButton) {
-  closeButton.addEventListener('click', closeOrderModal);
-}
+  if (elements.closeButton) {
+    elements.closeButton.addEventListener('click', closeOrderModal);
+  }
+};
 
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape' && isModalOpen()) {
@@ -75,7 +108,9 @@ document.addEventListener('keydown', event => {
   }
 });
 
-if (form) {
+const initForm = () => {
+  if (!elements.form) return;
+
   const normalizePhone = value => value.replace(/\D/g, '');
 
   const isPhoneValid = value => {
@@ -86,32 +121,32 @@ if (form) {
     );
   };
 
-  const sendOrderRequest = payload => axios.post(ORDER_REQUEST_URL, payload);
+  const sendOrderRequest = async payload => {
+    await loadDependencies();
+    return axios.post(ORDER_REQUEST_URL, payload);
+  };
 
   const fields = [
     {
-      input: document.getElementById('order-name'),
+      input: elements.orderName,
       error: document.getElementById('order-name-error'),
       validate: value => {
         if (!value.trim()) {
           return "Поле імені є обов'язковим.";
         }
-
         return '';
       },
     },
     {
-      input: document.getElementById('order-phone'),
+      input: elements.orderPhone,
       error: document.getElementById('order-phone-error'),
       validate: value => {
         if (!value.trim()) {
           return "Поле телефону є обов'язковим.";
         }
-
         if (!isPhoneValid(value)) {
           return 'Введіть коректний номер телефону.';
         }
-
         return '';
       },
     },
@@ -133,19 +168,23 @@ if (form) {
       setFieldState(field);
     });
 
-    field.input.addEventListener('input', () => {
-      if (field.input.classList.contains('is-invalid')) {
-        setFieldState(field);
-      }
-    });
+    field.input.addEventListener(
+      'input',
+      debounce(() => {
+        if (field.input.classList.contains('is-invalid')) {
+          setFieldState(field);
+        }
+      }, 100)
+    );
   });
 
-  form.addEventListener('submit', async event => {
+  elements.form.addEventListener('submit', async event => {
     event.preventDefault();
 
     const invalidField = fields.find(field => !setFieldState(field));
 
     if (invalidField) {
+      await loadDependencies();
       iziToast.error({
         message:
           invalidField.error.textContent || 'Перевірте правильність даних.',
@@ -157,9 +196,9 @@ if (form) {
     }
 
     const payload = {
-      name: orderName.value.trim(),
-      phone: orderPhone.value.trim(),
-      comment: orderComment.value.trim(),
+      name: elements.orderName.value.trim(),
+      phone: elements.orderPhone.value.trim(),
+      comment: elements.orderComment.value.trim(),
       modelId: dataOrders.modelId.trim(),
       color: dataOrders.color.trim(),
     };
@@ -173,10 +212,8 @@ if (form) {
         timeout: 2500,
       });
 
-      form.reset();
-
+      elements.form.reset();
       closeOrderModal();
-
       localStorage.removeItem('orderPhone');
       localStorage.removeItem('orderName');
       localStorage.removeItem('orderComment');
@@ -200,13 +237,31 @@ if (form) {
     }
   });
 
-  form.addEventListener('input', event => {
-    if (event.target === orderPhone) {
-      localStorage.setItem('orderPhone', orderPhone.value);
-    } else if (event.target === orderName) {
-      localStorage.setItem('orderName', orderName.value);
-    } else if (event.target === orderComment) {
-      localStorage.setItem('orderComment', orderComment.value);
-    }
+  elements.form.addEventListener(
+    'input',
+    debounce(event => {
+      if (event.target === elements.orderPhone) {
+        localStorage.setItem('orderPhone', elements.orderPhone.value);
+      } else if (event.target === elements.orderName) {
+        localStorage.setItem('orderName', elements.orderName.value);
+      } else if (event.target === elements.orderComment) {
+        localStorage.setItem('orderComment', elements.orderComment.value);
+      }
+    }, 300)
+  );
+};
+
+// Ініціалізація при ДОМ готовому
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', () => {
+    initElements();
+    restoreFormFromStorage();
+    initModalHandlers();
+    initForm();
   });
+} else {
+  initElements();
+  restoreFormFromStorage();
+  initModalHandlers();
+  initForm();
 }

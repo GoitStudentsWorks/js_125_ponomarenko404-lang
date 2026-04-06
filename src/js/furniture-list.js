@@ -1,3 +1,5 @@
+import { openModal } from './furniture-modal.js';
+
 document.addEventListener('DOMContentLoaded', async () => {
   const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
   const PER_PAGE = 8;
@@ -174,11 +176,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   function openModalById(id) {
-    if (!refs.modal) return;
-
-    refs.modal.classList.add('is-open');
-    refs.modal.dataset.id = id;
-  }
+  openModal(id);
+}
 
   async function loadInitialFurnitures() {
     showLoader();

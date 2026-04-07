@@ -18,7 +18,7 @@
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 156px 0; 
+    padding: 136px 0 137px 0; 
     width: 100%;
 
 }
@@ -39,6 +39,7 @@
     letter-spacing: 0.01em;
     color: var(--color-white);
     margin-bottom: 24px;
+    
     text-align: start;
     max-width: 335px;
 }

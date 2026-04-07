@@ -1,0 +1,241 @@
+.popular-products .popular-products-title {
+  margin-bottom: 24px;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 1.2;
+  text-align: center;
+  color: var(--color-neutral-darkest);
+}
+
+.popular-products .slider-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 72px;
+}
+
+.popular-products .popular-swiper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.popular-products .popular-card {
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  text-align: left;
+}
+
+.popular-products .popular-card-image {
+  display: block;
+  width: 100%;
+  height: 240px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.popular-products .popular-card-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  margin-bottom: 16px;
+}
+
+.popular-products .popular-card-title {
+  margin: 0 0 16px;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--color-neutral-darkest);
+}
+
+.popular-products .popular-card-colors {
+  display: flex;
+  gap: 12px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.popular-products .popular-card-color {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid rgba(8, 12, 9, 0.08);
+}
+
+.popular-products .popular-card-price {
+  margin: 0;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 1.3;
+  color: var(--color-neutral-darkest);
+}
+
+.popular-products .popular-card-btn {
+  width: 100%;
+  min-height: 46px;
+}
+
+.popular-products .js-swiper-pagination {
+  position: absolute;
+  left: 0;
+  bottom: 18px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.popular-products .js-swiper-pagination .swiper-pagination-bullet {
+  width: 8px;
+  height: 8px;
+  margin: 0 6px 0 0;
+  background-color: #d9d9d9;
+  opacity: 1;
+}
+
+.popular-products .js-swiper-pagination .swiper-pagination-bullet-active {
+  background-color: var(--color-madang-dark, #7a1f1f);
+}
+
+.popular-products .js-swiper-button-prev,
+.popular-products .js-swiper-button-next {
+  position: absolute;
+  bottom: 0;
+  width: 44px;
+  height: 44px;
+  border: 1px solid #d8d8d8;
+  border-radius: 50%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-neutral-darkest);
+}
+
+.popular-products .js-swiper-button-prev {
+  right: 56px;
+}
+
+.popular-products .js-swiper-button-next {
+  right: 0;
+}
+
+.popular-products .js-swiper-button-prev.swiper-button-disabled,
+.popular-products .js-swiper-button-next.swiper-button-disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.popular-products .popular-card-error {
+  padding: 40px 0;
+  text-align: center;
+  font-size: 20px;
+  line-height: 1.3;
+  color: var(--color-neutral-darkest);
+}
+
+@media screen and (min-width: 768px) {
+  .popular-products .popular-products-title {
+    margin-bottom: 32px;
+    font-size: 40px;
+  }
+
+  .popular-products .slider-container {
+    padding-bottom: 56px;
+  }
+
+  .popular-products .popular-card-image {
+    height: 260px;
+  }
+
+  .popular-products .popular-card-content {
+    margin-bottom: 12px;
+  }
+
+  .popular-products .popular-card-title {
+    margin-bottom: 8px;
+    line-height: 1.4;
+  }
+
+  .popular-products .popular-card-colors {
+    margin-bottom: 8px;
+  }
+
+  .popular-products .popular-card-color {
+    width: 24px;
+    height: 24px;
+  }
+
+  .popular-products .popular-card-price {
+    line-height: 1.4;
+  }
+
+  .popular-products .popular-card-btn {
+    min-height: 42px;
+  }
+
+  .popular-products .js-swiper-pagination {
+    bottom: 12px;
+  }
+
+  .popular-products .js-swiper-button-prev,
+  .popular-products .js-swiper-button-next {
+    width: 40px;
+    height: 40px;
+  }
+
+  .popular-products .js-swiper-button-prev {
+    right: 48px;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  .popular-products .popular-products-title {
+    font-size: 48px;
+  }
+
+  .popular-products .slider-container {
+    padding-bottom: 60px;
+  }
+
+  .popular-products .popular-card-image {
+    height: 256px;
+  }
+
+  .popular-products .popular-card-content {
+    margin-bottom: 16px;
+  }
+
+  .popular-products .popular-card-title {
+    line-height: 1.6;
+    min-height: 58px;
+  }
+
+  .popular-products .popular-card-colors {
+    gap: 16px;
+  }
+
+  .popular-products .popular-card-price {
+    font-size: 20px;
+    line-height: 1.6;
+  }
+
+  .popular-products .popular-card-btn {
+    min-height: 46px;
+  }
+
+  .popular-products .js-swiper-pagination {
+    bottom: 18px;
+  }
+
+  .popular-products .js-swiper-button-prev,
+  .popular-products .js-swiper-button-next {
+    width: 48px;
+    height: 48px;
+  }
+
+  .popular-products .js-swiper-button-prev {
+    right: 64px;
+  }
+}

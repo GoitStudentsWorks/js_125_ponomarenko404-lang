@@ -1,0 +1,33 @@
+<section class="feedback-section" id="feedback-section">
+  <div class="container">
+    <h2 class="feedback-title">Відгуки клієнтів</h2>
+    <h3 class="feedback-subtitle">Дізнайтеся, що кажуть наші задоволені клієнти про наші меблі.</h3>
+
+    <div class="reviews-slider swiper">
+      <div class="swiper-wrapper" id="reviews-list"></div>
+
+      <ul class="feedback-list">
+        <li class="feedback-item">
+          <button class="swiper-button-prev">
+            <svg><use xlink:href="./svg/feedback.svg#icon-left-arrow-alt"></use></svg>
+          </button>
+        </li>
+        <li class="feedback-item">
+          <button class="swiper-button-next">
+            <svg><use xlink:href="./svg/feedback.svg#icon-right-arrow-alt"></use></svg>
+          </button>
+        </li>
+      </ul>
+
+      <div class="swiper-pagination"></div>
+    </div>
+  </div>
+
+  <template id="star-template">
+    <div class="star">
+      <svg class="star-empty"><use xlink:href="./svg/feedback.svg#icon-star-empty"></use></svg>
+      <svg class="star-half"><use xlink:href="./svg/feedback.svg#icon-half-star"></use></svg>
+      <svg class="star-filled"><use xlink:href="./svg/feedback.svg#icon-star"></use></svg>
+    </div>
+  </template>
+</section>

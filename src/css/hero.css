@@ -13,7 +13,7 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5 )
     ), 
-      url("../img/hero/mobi-bg.webp");
+      url("../img/hero/mobi-bg@1x.webp");
 
     background-size: cover;
     background-position: center;
@@ -28,7 +28,7 @@
       rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0.5 )
     ), 
-      url("../img/hero/mobi-bg@x2.webp");
+      url("../img/hero/mobi-bg@2x.webp");
     }
 }
 .hero_title {
@@ -154,12 +154,12 @@ html {
       rgba(0, 0, 0, 0.4),
       rgba(0, 0, 0, 0.4)
     ), 
-      url("../img/hero/tab-bg.webp");
+      url("../img/hero/tab-bg@1x.webp");
      }
 @media (min-width: 768px) and (min-resolution: 2x) {
     .section_hero {
       background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
-        url("../img/hero/tab-bg@x2.webp");
+        url("../img/hero/tab-bg@2x.webp");
     }
   }
   .hero_title {
@@ -186,7 +186,7 @@ html {
         background-image: linear-gradient(
              rgba(0, 0, 0, 0.25),
              rgba(0, 0, 0, 0.25 )), 
-        url("../img/hero/bg.webp");
+        url("../img/hero/bg@1x.webp");
               padding: 92px 0;
 
         }
@@ -196,19 +196,19 @@ html {
         background-image: linear-gradient(
              rgba(0, 0, 0, 0.25),
              rgba(0, 0, 0, 0.25 )), 
-        url("../img/hero/bg@x2.webp");
+        url("../img/hero/bg@2x.webp");
               
 
         }
 }
 .hero_title {
     font-size: 56px;
-    max-width: 560px;
+   
   }
 
   .hero_subtitle {
     font-size: 18px;
-    max-width: 560px;
+    
   }
 
   .btn_anchor {

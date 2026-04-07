@@ -10,8 +10,8 @@
 
 .section_hero {
     background-image: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5 )
+      rgba(0, 0, 0, 0.2),
+      rgba(0, 0, 0, 0.2 )
     ), 
       url("../img/hero/mobi-bg@1x.webp");
 
@@ -34,7 +34,7 @@
 .hero_title {
     font-family: var(--font-main);
     font-weight: 700;
-    font-size: 56px;
+    font-size: 40px;
     line-height: 1.2;
     letter-spacing: 0.01em;
     color: var(--color-white);
@@ -45,29 +45,13 @@
 .hero_subtitle {
     font-family: var(--font-main);
     font-weight: 400;
-    font-size: 16px;
+    font-size: 18px;
     line-height: 1.6;
     color: var(--color-white);
     margin-bottom: 32px;
     max-width: 335px;
 }
-/*.btn_anchor {
-    display: block;
-    font-family: var(--font-main);
-  
-    max-width: 335px;
-    height: 46px;
-    transition: opacity 250ms ease, transform 200ms ease;
-    cursor: pointer;
-    text-decoration: none;
-    text-align: center;
-    border-radius: 100px;
 
-    box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5), inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--opacity-neutral-darkest-15), inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), inset 0 32px 24px 0 var(--opacity-white-5);
-    background: var(--color-madang);
-    line-height: 1.6;
-    color: var(--color-scheme-1-background);
-}  */
 
 .btn_anchor {
   display: inline-flex;              
@@ -144,27 +128,29 @@ html {
 @media (min-width: 768px) {
     .hero_container {
         width: 100%;
-        max-width: 765px;
+        max-width: 704px;
         margin: 0 auto;
+         margin: 0;
     }
     
      .section_hero {
+      
         padding: 36px 0;
          background-image: linear-gradient(
-      rgba(0, 0, 0, 0.4),
-      rgba(0, 0, 0, 0.4)
-    ), 
+      rgba(0, 0, 0, 0.5),
+      rgba(0, 0, 0, 0.5)
+    ),
       url("../img/hero/tab-bg@1x.webp");
      }
 @media (min-width: 768px) and (min-resolution: 2x) {
     .section_hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
         url("../img/hero/tab-bg@2x.webp");
     }
   }
   .hero_title {
-    font-size: 56px;
-    max-width: 400px;
+    font-size: 40px;
+    max-width: 560px;
   }
 
   .hero_subtitle {
@@ -184,8 +170,8 @@ html {
   }
   .section_hero {
         background-image: linear-gradient(
-             rgba(0, 0, 0, 0.25),
-             rgba(0, 0, 0, 0.25 )), 
+             rgba(0, 0, 0, 0.5),
+             rgba(0, 0, 0, 0.5)), 
         url("../img/hero/bg@1x.webp");
               padding: 92px 0;
 
@@ -194,8 +180,8 @@ html {
 @media (min-width: 1440px) and (min-resolution: 2x) {
       .section_hero {
         background-image: linear-gradient(
-             rgba(0, 0, 0, 0.25),
-             rgba(0, 0, 0, 0.25 )), 
+             rgba(0, 0, 0, 0.5),
+             rgba(0, 0, 0, 0.5)), 
         url("../img/hero/bg@2x.webp");
               
 

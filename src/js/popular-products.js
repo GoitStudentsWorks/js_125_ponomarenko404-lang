@@ -18,7 +18,12 @@ let popularSwiper = null;
 
 function getImageUrl(path) {
   if (!path) return '';
-  return path.startsWith('http') ? path : `${BASE_ORIGIN}${path}`;
+
+  if (path.startsWith('http://') || path.startsWith('https://')) {
+    return path;
+  }
+
+  return `${BASE_ORIGIN}${path.startsWith('/') ? path : `/${path}`}`;
 }
 
 function getColors(colors) {
@@ -39,6 +44,8 @@ function renderProducts(products) {
     .map(product => {
       const cleanName = product.name.replaceAll('"', '');
 
+      const imagePath = product.images?.[0] || product.image || product.photo || '';
+
       const colorsMarkup = getColors(product.color)
         .map(
           color => `
@@ -54,7 +61,7 @@ function renderProducts(products) {
         <li class="swiper-slide popular-card">
           <img
             class="popular-card-image"
-            src="${getImageUrl(product.images?.[0])}"
+            src="${getImageUrl(imagePath)}"
             alt="${cleanName}"
             loading="lazy"
           />

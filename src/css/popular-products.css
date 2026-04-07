@@ -1,4 +1,4 @@
-.popular-products .popular-products-title {
+.popular-products-title {
   margin-bottom: 24px;
   font-weight: 700;
   font-size: 32px;
@@ -7,25 +7,25 @@
   color: var(--color-neutral-darkest);
 }
 
-.popular-products .slider-container {
+.slider-container {
   position: relative;
   width: 100%;
   padding-bottom: 72px;
 }
 
-.popular-products .popular-swiper {
+.popular-swiper {
   width: 100%;
   overflow: hidden;
 }
 
-.popular-products .popular-card {
+.popular-card {
   display: flex;
   flex-direction: column;
   height: auto;
   text-align: left;
 }
 
-.popular-products .popular-card-image {
+.popular-card-image {
   display: block;
   width: 100%;
   height: 240px;
@@ -34,14 +34,14 @@
   margin-bottom: 16px;
 }
 
-.popular-products .popular-card-content {
+.popular-card-content {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   margin-bottom: 16px;
 }
 
-.popular-products .popular-card-title {
+.popular-card-title {
   margin: 0 0 16px;
   font-weight: 600;
   font-size: 18px;
@@ -49,7 +49,7 @@
   color: var(--color-neutral-darkest);
 }
 
-.popular-products .popular-card-colors {
+.popular-card-colors {
   display: flex;
   gap: 12px;
   margin: 0 0 16px;
@@ -57,7 +57,7 @@
   list-style: none;
 }
 
-.popular-products .popular-card-color {
+.popular-card-color {
   width: 20px;
   height: 20px;
   border-radius: 50%;
@@ -65,7 +65,7 @@
   border: 1px solid rgba(8, 12, 9, 0.08);
 }
 
-.popular-products .popular-card-price {
+.popular-card-price {
   margin: 0;
   font-weight: 600;
   font-size: 18px;
@@ -73,12 +73,12 @@
   color: var(--color-neutral-darkest);
 }
 
-.popular-products .popular-card-btn {
+.popular-card-btn {
   width: 100%;
   min-height: 46px;
 }
 
-.popular-products .js-swiper-pagination {
+.js-swiper-pagination {
   position: absolute;
   left: 0;
   bottom: 18px;
@@ -86,7 +86,7 @@
   justify-content: flex-start;
 }
 
-.popular-products .js-swiper-pagination .swiper-pagination-bullet {
+.js-swiper-pagination .swiper-pagination-bullet {
   width: 8px;
   height: 8px;
   margin: 0 6px 0 0;
@@ -94,40 +94,69 @@
   opacity: 1;
 }
 
-.popular-products .js-swiper-pagination .swiper-pagination-bullet-active {
+.js-swiper-pagination .swiper-pagination-bullet-active {
   background-color: var(--color-madang-dark, #7a1f1f);
 }
 
-.popular-products .js-swiper-button-prev,
-.popular-products .js-swiper-button-next {
+.popular-products-nav-list {
   position: absolute;
+  right: 0;
   bottom: 0;
-  width: 44px;
-  height: 44px;
-  border: 1px solid #d8d8d8;
-  border-radius: 50%;
-  background-color: #fff;
+  display: flex;
+  gap: 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.popular-products-nav-item {
+  display: flex;
+}
+
+.js-swiper-button-prev,
+.js-swiper-button-next {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 1px solid var(--opacity-neutral-darkest-15);
+  border-radius: 50%;
+  background-color: var(--color-neutral-lightest);
   color: var(--color-neutral-darkest);
+  cursor: pointer;
+  opacity: 1;
+  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
-.popular-products .js-swiper-button-prev {
-  right: 56px;
+.js-swiper-button-prev svg,
+.js-swiper-button-next svg {
+  width: 24px;
+  height: 24px;
+  fill: currentColor;
 }
 
-.popular-products .js-swiper-button-next {
-  right: 0;
+.js-swiper-button-prev:hover,
+.js-swiper-button-next:hover,
+.js-swiper-button-prev:focus,
+.js-swiper-button-next:focus,
+.js-swiper-button-prev:active,
+.js-swiper-button-next:active {
+  background-color: var(--color-madang);
+  color: var(--color-white);
+  outline: none;
 }
 
-.popular-products .js-swiper-button-prev.swiper-button-disabled,
-.popular-products .js-swiper-button-next.swiper-button-disabled {
+.js-swiper-button-prev.swiper-button-disabled,
+.js-swiper-button-next.swiper-button-disabled {
   opacity: 0.5;
   pointer-events: none;
 }
 
-.popular-products .popular-card-error {
+.popular-card-error {
   padding: 40px 0;
   text-align: center;
   font-size: 20px;
@@ -136,106 +165,102 @@
 }
 
 @media screen and (min-width: 768px) {
-  .popular-products .popular-products-title {
+  .popular-products-title {
     margin-bottom: 32px;
     font-size: 40px;
   }
 
-  .popular-products .slider-container {
+  .slider-container {
     padding-bottom: 56px;
   }
 
-  .popular-products .popular-card-image {
+  .popular-card-image {
     height: 260px;
   }
 
-  .popular-products .popular-card-content {
+  .popular-card-content {
     margin-bottom: 12px;
   }
 
-  .popular-products .popular-card-title {
+  .popular-card-title {
     margin-bottom: 8px;
     line-height: 1.4;
   }
 
-  .popular-products .popular-card-colors {
+  .popular-card-colors {
     margin-bottom: 8px;
   }
 
-  .popular-products .popular-card-color {
+  .popular-card-color {
     width: 24px;
     height: 24px;
   }
 
-  .popular-products .popular-card-price {
+  .popular-card-price {
     line-height: 1.4;
   }
 
-  .popular-products .popular-card-btn {
+  .popular-card-btn {
     min-height: 42px;
   }
 
-  .popular-products .js-swiper-pagination {
+  .js-swiper-pagination {
     bottom: 12px;
   }
 
-  .popular-products .js-swiper-button-prev,
-  .popular-products .js-swiper-button-next {
+  .js-swiper-button-prev,
+  .js-swiper-button-next {
     width: 40px;
     height: 40px;
   }
 
-  .popular-products .js-swiper-button-prev {
-    right: 48px;
+  .popular-products-nav-list {
+    gap: 16px;
   }
 }
 
 @media screen and (min-width: 1440px) {
-  .popular-products .popular-products-title {
+  .popular-products-title {
     font-size: 48px;
   }
 
-  .popular-products .slider-container {
+  .slider-container {
     padding-bottom: 60px;
   }
 
-  .popular-products .popular-card-image {
+  .popular-card-image {
     height: 256px;
   }
 
-  .popular-products .popular-card-content {
+  .popular-card-content {
     margin-bottom: 16px;
   }
 
-  .popular-products .popular-card-title {
+  .popular-card-title {
     line-height: 1.6;
     min-height: 58px;
   }
 
-  .popular-products .popular-card-colors {
+  .popular-card-colors {
     gap: 16px;
   }
 
-  .popular-products .popular-card-price {
+  .popular-card-price {
     font-size: 20px;
     line-height: 1.6;
   }
 
-  .popular-products .popular-card-btn {
+  .popular-card-btn {
     min-height: 46px;
   }
 
-  .popular-products .js-swiper-pagination {
+  .js-swiper-pagination {
     bottom: 18px;
   }
 
-  .popular-products .js-swiper-button-prev,
-  .popular-products .js-swiper-button-next {
+  .js-swiper-button-prev,
+  .js-swiper-button-next {
     width: 48px;
     height: 48px;
-  }
-
-  .popular-products .js-swiper-button-prev {
-    right: 64px;
   }
 }

@@ -43,7 +43,6 @@ function renderProducts(products) {
   const markup = products
     .map(product => {
       const cleanName = product.name.replaceAll('"', '');
-
       const imagePath = product.images?.[0] || product.image || product.photo || '';
 
       const colorsMarkup = getColors(product.color)
@@ -119,6 +118,16 @@ function initSwiper() {
   });
 }
 
+function bindNavigationBlur() {
+  prevBtn?.addEventListener('click', event => {
+    event.currentTarget.blur();
+  });
+
+  nextBtn?.addEventListener('click', event => {
+    event.currentTarget.blur();
+  });
+}
+
 async function initPopularProducts() {
   if (!list || !prevBtn || !nextBtn || !paginationEl) return;
 
@@ -133,6 +142,7 @@ async function initPopularProducts() {
 
     renderProducts(products);
     initSwiper();
+    bindNavigationBlur();
   } catch (error) {
     console.error(error);
     list.innerHTML =

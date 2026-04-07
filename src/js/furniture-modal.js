@@ -1,4 +1,5 @@
 import iziToast from 'izitoast';
+import 'css-star-rating/css/star-rating.css';
 import 'izitoast/dist/css/iziToast.min.css';
 import { openOrderModal } from './order-modal.js';
 
@@ -54,23 +55,23 @@ function createRatingMarkup(rate) {
   const fullStars = Math.floor(rounded);
   const hasHalf = rounded % 1 === 0.5;
 
-  return `
-    <div class="rating">
-      ${[1, 2, 3, 4, 5].map(i => {
-        let iconId;
-        if (i <= fullStars) {
-          iconId = 'icon-star';
-        } else if (i === fullStars + 1 && hasHalf) {
-          iconId = 'icon-half-star';
-        } else {
-          iconId = 'icon-star-empty';
-        }
-        return `<span class="star">
-          <svg><use xlink:href="./svg/feedback.svg#${iconId}"></use></svg>
-        </span>`;
-      }).join('')}
-    </div>
-  `;
+  let valueClass = `value-${Math.round(rounded)}`;
+  if (hasHalf) valueClass = `value-${fullStars} half`;
+
+  const container = document.createElement('div');
+  container.className = `rating medium star-svg ${valueClass} label-hidden`;
+
+  const starContainer = document.createElement('div');
+  starContainer.className = 'star-container';
+
+  const template = document.getElementById('modal-star-template');
+  for (let i = 0; i < 5; i++) {
+    const clone = template.content.cloneNode(true);
+    starContainer.appendChild(clone);
+  }
+
+  container.appendChild(starContainer);
+  return container;
 }
 
 function fillModal(item) {
@@ -93,7 +94,8 @@ function fillModal(item) {
   modalPrice.textContent = `${item.price ?? 0} грн`;
   modalDescription.textContent = item.description ?? '';
   modalSize.textContent = `Розміри: ${item.sizes ?? ''}`;
-  modalRating.innerHTML = createRatingMarkup(item.rate ?? 0);
+  modalRating.innerHTML = '';
+  modalRating.appendChild(createRatingMarkup(item.rate ?? 0));
 
   modalColorOptions.innerHTML = item.color
     .map((hex, i) => `

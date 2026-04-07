@@ -154,7 +154,7 @@
     left: auto;
     right: 0; /* Вирівнювання по правому краю */
     width: 249px;
-    height: 334px;
+    height: 396px;
     transform: translateX(+20px);
     transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
     /* Додаємо обмеження, щоб меню не виходило за межі екрана */
@@ -192,6 +192,21 @@
     padding: 8px 20px;
     margin: 0 auto;
   }
+
+  .overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--opacity-neutral-darkest-50);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 250ms ease;
+  z-index: 998;
+}
+
+.overlay.is-open {
+  opacity: 1;
+  visibility: visible;
+}
 }
 
 /* --- Десктоп (Desktop) --- */

@@ -121,5 +121,3 @@
     mediaQuery.removeEventListener('change', handleMediaChange);
   });
 })();
-
-overlay.addEventListener('click', closeMenu);

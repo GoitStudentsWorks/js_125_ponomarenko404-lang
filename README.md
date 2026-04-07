@@ -6,16 +6,20 @@
 
 Посилання
 
-Репозиторій
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/ponomarenko404-lang/project-Domino)
-Макет у FIgma
-[![Figma](https://img.shields.io/badge/Figma-Design-blueviolet?logo=figma&logoColor=white)](https://www.figma.com/design/xmuUuDiEAbT0mjmpgzPrc0/%D0%9C%D0%B5%D0%B1%D0%BB%D0%B5%D1%80%D1%96%D1%8F?node-id=5999-10563&p=f&t=dZMoIHtsTxHi6FD8-0)
-дошка Трело
-[![Trello](https://img.shields.io/badge/Trello-Board-0052CC?logo=trello&logoColor=white)](https://trello.com/b/nZFQqeGZ/%D0%BC%D0%B5%D0%B1%D0%BB%D0%B5%D1%80%D1%96%D1%8F)
-Бек Енд проекту
-[![GoIT](https://img.shields.io/badge/GoIT-Education-orange)](https://furniture-store-v2.b.goit.study/api-docs/)
-ТЗ проекту
-[![Google Docs](https://img.shields.io/badge/Google%20Docs-Document-brightgreen?logo=googledocs&logoColor=white)](https://docs.google.com/spreadsheets/d/1rOxDcfaBeCkf4KbU6IHzfz_p_fDBcllwhuV9AdMtQDI/edit?gid=0#gid=0)
+- Репозиторій
+  [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?logo=github)](https://github.com/ponomarenko404-lang/project-Domino)
+
+- Макет у FIgma
+  [![Figma](https://img.shields.io/badge/Figma-Design-blueviolet?logo=figma&logoColor=white)](https://www.figma.com/design/xmuUuDiEAbT0mjmpgzPrc0/%D0%9C%D0%B5%D0%B1%D0%BB%D0%B5%D1%80%D1%96%D1%8F?node-id=5999-10563&p=f&t=dZMoIHtsTxHi6FD8-0)
+
+- Дошка Трело
+  [![Trello](https://img.shields.io/badge/Trello-Board-0052CC?logo=trello&logoColor=white)](https://trello.com/b/nZFQqeGZ/%D0%BC%D0%B5%D0%B1%D0%BB%D0%B5%D1%80%D1%96%D1%8F)
+
+- Бек Енд проекту
+  [![GoIT](https://img.shields.io/badge/GoIT-Education-orange)](https://furniture-store-v2.b.goit.study/api-docs/)
+
+- ТЗ проекту
+  [![Google Docs](https://img.shields.io/badge/Google%20Docs-Document-brightgreen?logo=googledocs&logoColor=white)](https://docs.google.com/spreadsheets/d/1rOxDcfaBeCkf4KbU6IHzfz_p_fDBcllwhuV9AdMtQDI/edit?gid=0#gid=0)
 
 ## Інструкція по розгортанню проекта
 
@@ -26,8 +30,11 @@
 ## Які технології використані:
 
 ![JavaScript](https://img.shields.io/badge/-JavaScript-black?logo=javascript)
+
 ![HTML](https://img.shields.io/badge/-HTML5-black?logo=html)
+
 ![CSS3](https://img.shields.io/badge/-CSS3-black?logo=css3)
+
 ![Vite](https://img.shields.io/badge/-Vite-black?logo=vite)
 
 ## Про проєкт і яку задачу він вирішує:

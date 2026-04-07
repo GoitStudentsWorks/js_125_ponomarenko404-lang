@@ -97,6 +97,11 @@
 }
 
 @media screen and (min-width: 1440px) {
+    .accordion-container {
+        max-width: 865px;
+        margin: 0 auto;
+    }
+    
     .faq-title {
         font-size: 48px;
     }

@@ -10,8 +10,8 @@
 
 .section_hero {
     background-image: linear-gradient(
-      rgba(0, 0, 0, 0.2),
-      rgba(0, 0, 0, 0.2 )
+      var(--opacity-neutral-darkest-50),
+      var(--opacity-neutral-darkest-50)
     ), 
       url("../img/hero/mobi-bg@1x.webp");
 
@@ -25,14 +25,13 @@
 @media screen and (min-resolution: 2x) {
     .section_hero {
     background-image: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5 )
+      var(--opacity-neutral-darkest-50),
+        var(--opacity-neutral-darkest-50)
     ), 
       url("../img/hero/mobi-bg@2x.webp");
     }
 }
 .hero_title {
-    font-family: var(--font-main);
     font-weight: 700;
     font-size: 40px;
     line-height: 1.2;
@@ -44,7 +43,6 @@
     max-width: 335px;
 }
 .hero_subtitle {
-    font-family: var(--font-main);
     font-weight: 400;
     font-size: 18px;
     line-height: 1.6;
@@ -53,78 +51,6 @@
     max-width: 335px;
 }
 
-
-.btn_anchor {
-  display: inline-flex;              
-  align-items: center;               
-  justify-content: center; 
-  margin: 0 auto;          
-  
-  font-family: var(--font-main);
-  padding: 10px 24px;                
-  max-width: 335px;
-  width: 100%;
-
-  border-radius: 100px;
-  text-decoration: none;
-
-  background: var(--color-madang);
-  color: var(--color-scheme-1-background);
-
-  line-height: 1.6;
-  font-weight: 500;
-  font-size: 16px;
-
-  cursor: pointer;
-  transition: all 250ms ease;
-
-  box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5),
-    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
-    inset 0 0 0 1px var(--opacity-neutral-darkest-15),
-    inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 32px 24px 0 var(--opacity-white-5);
-}
-.btn_anchor:hover {
-    box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5), 
-    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), 
-    inset 0 0 0 1px var(--opacity-neutral-darkest-15), 
-    inset 0 2px 1px 0 rgba(255, 255, 255, 0.25), 
-    inset 0 32px 24px 0 var(--opacity-white-5);
-    background: var(--color-madang);
-    opacity: 0.9;
- 
-    transform: translateY(-2px);
-    filter: brightness(1.1);
-}
-.btn_anchor:focus {
-    box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5), 
-    inset 0 -2px 1px 0 var(--opacity-neutral-darkest-5), 
-    inset 0 0 0 1px var(--opacity-neutral-darkest-5);
-    background: var(--opacity-neutral-darkest-5);
-    opacity: 0.5;
-
-
-
-    pointer-events: none; /* Забороняє кліки */
-    cursor: default;      /* Змінює курсор з "руки" на звичайний */
-    
-    
-}
-.btn_anchor:active {
-   opacity: 1;
-  background: var(--color-madang);
-  box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5),
-    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--opacity-neutral-darkest-15),
-    inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
-    inset 0 32px 24px 0 var(--opacity-white-5);
-  transform: translateY(0);
-  
-}
-
-
-html {
-  scroll-behavior: smooth;
-}
 
 @media (min-width: 768px) {
     .hero_container {
@@ -138,14 +64,15 @@ html {
       
         padding: 36px 0;
          background-image: linear-gradient(
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0.5)
+      var(--opacity-neutral-darkest-50),
+        var(--opacity-neutral-darkest-50)
     ),
       url("../img/hero/tab-bg@1x.webp");
      }
 @media (min-width: 768px) and (min-resolution: 2x) {
     .section_hero {
-      background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+      background-image: linear-gradient(var(--opacity-neutral-darkest-50),
+            var(--opacity-neutral-darkest-50)),
         url("../img/hero/tab-bg@2x.webp");
     }
   }
@@ -159,9 +86,7 @@ html {
     max-width: 560px;
   }
 
-  .btn_anchor {
-    width: 209px;
-  }
+
 
 }
 @media (min-width: 1440px) {
@@ -170,9 +95,8 @@ html {
          margin: 0 auto;
   }
   .section_hero {
-        background-image: linear-gradient(
-             rgba(0, 0, 0, 0.5),
-             rgba(0, 0, 0, 0.5)), 
+        background-image: linear-gradient(var(--opacity-neutral-darkest-50),
+              var(--opacity-neutral-darkest-50)),
         url("../img/hero/bg@1x.webp");
               padding: 92px 0;
 
@@ -180,9 +104,8 @@ html {
 
 @media (min-width: 1440px) and (min-resolution: 2x) {
       .section_hero {
-        background-image: linear-gradient(
-             rgba(0, 0, 0, 0.5),
-             rgba(0, 0, 0, 0.5)), 
+        background-image: linear-gradient(var(--opacity-neutral-darkest-50),
+              var(--opacity-neutral-darkest-50)),
         url("../img/hero/bg@2x.webp");
               
 
@@ -198,9 +121,6 @@ html {
     
   }
 
-  .btn_anchor {
-    width: 209px;
-  }
   }
  
 

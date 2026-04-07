@@ -9,27 +9,30 @@
 
       <div class="swiper-pagination js-swiper-pagination"></div>
 
-      <button class="js-swiper-button-prev interactive" type="button">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M15 18l-6-6 6-6"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-          />
-        </svg>
-      </button>
-
-      <button class="js-swiper-button-next interactive" type="button">
-        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-          <path
-            d="M9 6l6 6-6 6"
-            stroke="currentColor"
-            stroke-width="2"
-            fill="none"
-          />
-        </svg>
-      </button>
+      <ul class="popular-products-nav-list">
+        <li class="popular-products-nav-item">
+          <button
+            class="js-swiper-button-prev"
+            type="button"
+            aria-label="Попередній слайд"
+          >
+            <svg width="24" height="24" aria-hidden="true">
+              <use xlink:href="./svg/feedback.svg#icon-left-arrow-alt"></use>
+            </svg>
+          </button>
+        </li>
+        <li class="popular-products-nav-item">
+          <button
+            class="js-swiper-button-next"
+            type="button"
+            aria-label="Наступний слайд"
+          >
+            <svg width="24" height="24" aria-hidden="true">
+              <use xlink:href="./svg/feedback.svg#icon-right-arrow-alt"></use>
+            </svg>
+          </button>
+        </li>
+      </ul>
     </div>
   </div>
 </section>

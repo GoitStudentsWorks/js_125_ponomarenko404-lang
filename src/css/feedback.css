@@ -72,6 +72,10 @@
    pointer-events: none;
 }
 
+.reviews-slider:focus-visible {
+  outline: none;
+}
+
 .swiper-pagination-bullet {
     background-color: var(--swiper-pagination-bullet-inactive-color, #6b0609);
 }

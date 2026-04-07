@@ -3,6 +3,7 @@
   const openMenuBtn = document.querySelector('.js-open-menu');
   const burgerIcon = openMenuBtn.querySelector('use');
   const menuLinks = mobileMenu.querySelectorAll('.nav-link, .mobile-order-btn');
+  const overlay = document.querySelector('.overlay');
 
   // Змінні для зберігання обробників подій
   let keydownHandler = null;
@@ -63,6 +64,7 @@
     burgerIcon.setAttribute('href', `${spritePath}#icon-burger`);
     openMenuBtn.setAttribute('aria-label', 'Перемикач мобільного меню');
     document.body.classList.remove('no-scroll');
+    overlay.classList.remove('is-open');
 
     // Видаляємо слухачі подій
     removeEventListeners();
@@ -75,6 +77,7 @@
     burgerIcon.setAttribute('href', `${spritePath}#icon-close`);
     openMenuBtn.setAttribute('aria-label', 'Закрити мобільне меню');
     document.body.classList.add('no-scroll');
+    overlay.classList.add('is-open');
 
     // Додаємо слухачі подій
     addEventListeners();
@@ -118,3 +121,5 @@
     mediaQuery.removeEventListener('change', handleMediaChange);
   });
 })();
+
+overlay.addEventListener('click', closeMenu);

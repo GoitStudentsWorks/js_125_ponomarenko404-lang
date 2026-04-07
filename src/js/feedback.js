@@ -1,5 +1,5 @@
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination, Keyboard } from 'swiper/modules';
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
@@ -52,8 +52,11 @@ async function loadReviews() {
 
     reviewsList.innerHTML = data.feedbacks.map(createCard).join("");
 
+    const slider = document.querySelector(".reviews-slider");
+    slider.setAttribute("tabinex", "0");
+
     new Swiper(".reviews-slider", {
-      modules: [Navigation, Pagination],
+      modules: [Navigation, Pagination, Keyboard],
       slidesPerView: 1,
       spaceBetween: 24,
       breakpoints: { 768: { slidesPerView: 2 }, 1440: { slidesPerView: 3 } },
@@ -63,6 +66,10 @@ async function loadReviews() {
         prevEl: ".swiper-button-prev",
         disabledClass: "swiper-button-disabled",
       },
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      }
     });
 
     document.querySelectorAll('.swiper-button-next, .swiper-button-prev')

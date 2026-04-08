@@ -1,6 +1,7 @@
 .about-section {
   background-color: var(--color-scheme-2-background);
-  padding: 64px;
+  padding-top: 64px;
+  padding-bottom: 64px;
   width: 100%;
 }
 
@@ -38,7 +39,8 @@
 
 @media (min-width: 768px) {
   .about-section {
-    padding: 32px;
+    padding-top: 32px;
+    padding-bottom: 32px;
   }
 
   .about-content {
@@ -48,7 +50,8 @@
 
 @media (min-width: 1440px) {
   .about-section {
-    padding: 64px;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 
   .about-section .container {

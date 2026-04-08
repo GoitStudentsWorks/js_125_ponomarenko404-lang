@@ -1,6 +1,7 @@
 import axios from 'axios';
 import Swiper from 'swiper';
 import { Navigation, Pagination } from 'swiper/modules';
+import { openModal } from './furniture-modal.js';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -75,7 +76,7 @@ function renderProducts(products) {
             <p class="popular-card-price">${product.price} грн</p>
           </div>
 
-          <button class="popular-card-btn btn-white" type="button">
+          <button class="popular-card-btn btn-white" type="button" data-id="${product._id}">
             Детальніше
           </button>
         </li>
@@ -151,3 +152,10 @@ async function initPopularProducts() {
 }
 
 initPopularProducts();
+
+
+list.addEventListener('click', e => {
+  const btn = e.target.closest('[data-id]');
+  if (!btn) return;
+  openModal(btn.dataset.id);
+});

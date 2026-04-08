@@ -1,35 +1,64 @@
 <!-- MODAL -->
-<div class="modal" id="modal">
+<div
+  class="modal"
+  id="modal"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="modal-title"
+  aria-describedby="modal-description"
+  aria-hidden="true"
+>
   <div class="modal-content">
     <!-- CLOSE -->
-    <button class="modal-close" type="button">✕</button>
+    <button
+      class="modal-close"
+      type="button"
+      aria-label="Закрити модальне вікно"
+    >
+      <svg width="32" height="32" aria-hidden="true" focusable="false">
+        <use href="./svg/close.svg#icon-close"></use>
+      </svg>
+    </button>
 
     <div class="modal-inner">
       <!-- LEFT: GALLERY -->
       <div class="modal-gallery">
-        <img class="modal-main-image" src="#" alt="Furniture image" />
+        <img
+          class="modal-main-image"
+          src="#"
+          alt="Furniture image"
+          aria-hidden="true"
+        />
 
-        <div class="modal-thumbnails"></div>
+        <div
+          class="modal-thumbnails"
+          role="list"
+          aria-label="Додаткові фото товару"
+        ></div>
       </div>
 
       <!-- RIGHT: INFO -->
       <div class="modal-info">
-        <h2 class="modal-title" aria-label="Назва товару"></h2>
+        <h2 class="modal-title" id="modal-title" aria-label="Назва товару"></h2>
 
-        <p class="modal-category"></p>
+        <p class="modal-category" aria-label="Категорія"></p>
 
-        <p class="modal-price"></p>
+        <p class="modal-price" aria-label="Ціна"></p>
 
-        <div class="modal-rating"></div>
+        <div class="modal-rating" role="img" aria-label="Рейтинг товару"></div>
 
         <div class="modal-colors">
-          <p class="color-text"></p>
-          <div class="color-options"></div>
+          <p class="color-text" id="color-label">Колір</p>
+          <div
+            class="color-options"
+            role="radiogroup"
+            aria-labelledby="color-label"
+          ></div>
         </div>
 
-        <p class="modal-description"></p>
+        <p class="modal-description" id="modal-description"></p>
 
-        <p class="modal-size"></p>
+        <p class="modal-size" aria-label="Розміри товару"></p>
 
         <button class="modal-order-btn btn-red" type="button">
           Перейти до замовлення
@@ -40,14 +69,14 @@
 </div>
 
 <template id="modal-star-template">
-  <div class="star">
-    <svg class="star-empty">
+  <div class="star" aria-hidden="true">
+    <svg class="star-empty" focusable="false">
       <use xlink:href="./svg/feedback.svg#icon-star-empty"></use>
     </svg>
-    <svg class="star-half">
+    <svg class="star-half" focusable="false">
       <use xlink:href="./svg/feedback.svg#icon-half-star"></use>
     </svg>
-    <svg class="star-filled">
+    <svg class="star-filled" focusable="false">
       <use xlink:href="./svg/feedback.svg#icon-star"></use>
     </svg>
   </div>

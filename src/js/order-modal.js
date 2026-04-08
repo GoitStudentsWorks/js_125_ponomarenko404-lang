@@ -214,6 +214,8 @@ const initForm = () => {
 
       elements.form.reset();
       closeOrderModal();
+      localStorage.removeItem('orderModelId');
+      localStorage.removeItem('orderColor');
       localStorage.removeItem('orderPhone');
       localStorage.removeItem('orderName');
       localStorage.removeItem('orderComment');

@@ -73,6 +73,26 @@ function createRatingMarkup(rate) {
   container.appendChild(starContainer);
   return container;
 }
+function hexToColorName(hex) {
+  const map = {
+    '#ffffff': 'Білий',
+    '#000000': 'Чорний',
+    '#ff0000': 'Червоний',
+    '#00ff00': 'Зелений',
+    '#0000ff': 'Синій',
+    '#ffff00': 'Жовтий',
+    '#ffa500': 'Помаранчевий',
+    '#800080': 'Фіолетовий',
+    '#ffc0cb': 'Рожевий',
+    '#a52a2a': 'Коричневий',
+    '#808080': 'Сірий',
+    '#c0c0c0': 'Срібний',
+    '#ffd700': 'Золотий',
+    '#008080': 'Бірюзовий',
+    '#000080': 'Темно-синій',
+  };
+  return map[hex.toLowerCase()] ?? hex;
+}
 
 function fillModal(item) {
   modalMainImage.src = item.images[0] ?? '';
@@ -80,12 +100,20 @@ function fillModal(item) {
 
   modalThumbnails.innerHTML = item.images
     .slice(1)
-    .map(src => `<img src="${src}" alt="${item.name}" />`)
-    .join('');
+    .map((src, i) => `
+    <img
+      role="listitem"
+      src="${src}"
+      alt="${item.name}, фото ${i + 2}"
+    />
+  `)
+  .join('');
 
   modalThumbnails.querySelectorAll('img').forEach(img => {
     img.addEventListener('click', () => {
+      const prevMain = modalMainImage.src;
       modalMainImage.src = img.src;
+      img.src = prevMain;
     });
   });
 
@@ -95,26 +123,29 @@ function fillModal(item) {
   modalDescription.textContent = item.description ?? '';
   modalSize.textContent = `Розміри: ${item.sizes ?? ''}`;
   modalRating.innerHTML = '';
+  modalRating.setAttribute('aria-label', `Рейтинг: ${item.rate} з 5`);
   modalRating.appendChild(createRatingMarkup(item.rate ?? 0));
 
   modalColorOptions.innerHTML = item.color
-    .map((hex, i) => `
-      <label class="color-option-label">
-        <input type="checkbox" name="color" value="${hex}" ${i === 0 ? 'checked' : ''} />
-        <span class="color-swatch" style="background: ${hex}"></span>
-      </label>
-    `)
-    .join('');
+  .map((hex, i) => `
+    <label class="color-option-label">
+      <input
+        type="radio"      // ← правильна семантика
+        name="color"
+        value="${hex}"
+        ${i === 0 ? 'checked' : ''}
+        aria-label="${hexToColorName(hex)}"
+      />
+      <span class="color-swatch" style="background: ${hex}"></span>
+    </label>
+  `)
+  .join('');
 
   dataOrder.modelId = item._id;
   dataOrder.color = item.color[0];
 
   modalColorOptions.addEventListener('change', e => {
-    if (e.target.type === 'checkbox') {
-      modalColorOptions.querySelectorAll('input[type="checkbox"]').forEach(cb => {
-        cb.checked = false;
-      });
-      e.target.checked = true;
+    if (e.target.type === 'radio') {
       dataOrder.color = e.target.value;
     }
   });
@@ -122,6 +153,7 @@ function fillModal(item) {
 
 export async function openModal(id) {
   modal.classList.add('is-open');
+  modal.setAttribute('aria-hidden', 'false');
   document.body.style.overflow = 'hidden';
   showLoader();
 
@@ -148,6 +180,7 @@ export async function openModal(id) {
 
 export function closeModal() {
   modal.classList.remove('is-open');
+  modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';
 }
 
@@ -164,6 +197,8 @@ document.addEventListener('keyup', e => {
 const orderBtn = document.querySelector('.modal-order-btn');
 
 orderBtn.addEventListener('click', () => {
+  localStorage.setItem('orderModelId', dataOrder.modelId);
+  localStorage.setItem('orderColor', dataOrder.color);
   closeModal();
   openOrderModal();
 });

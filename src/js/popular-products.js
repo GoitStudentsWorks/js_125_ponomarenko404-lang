@@ -7,6 +7,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import { openModal } from './furniture-modal.js';
+
 const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
 const BASE_ORIGIN = 'https://furniture-store-v2.b.goit.study';
 
@@ -14,6 +16,7 @@ const list = document.querySelector('.js-popular-list');
 const prevBtn = document.querySelector('.js-swiper-button-prev');
 const nextBtn = document.querySelector('.js-swiper-button-next');
 const paginationEl = document.querySelector('.js-swiper-pagination');
+const slider = document.querySelector('.popular-swiper');
 
 let popularSwiper = null;
 
@@ -92,8 +95,12 @@ function initSwiper() {
     popularSwiper.destroy(true, true);
   }
 
+  if (slider) {
+    slider.setAttribute('tabindex', '0');
+  }
+
   popularSwiper = new Swiper('.popular-swiper', {
-    modules: [Navigation, Pagination],
+    modules: [Navigation, Pagination, Keyboard],
     loop: false,
     slidesPerView: 1,
     spaceBetween: 20,
@@ -101,10 +108,15 @@ function initSwiper() {
     navigation: {
       nextEl: nextBtn,
       prevEl: prevBtn,
+      disabledClass: 'swiper-button-disabled',
     },
     pagination: {
       el: paginationEl,
       clickable: true,
+    },
+    keyboard: {
+      enabled: true,
+      onlyInViewport: true,
     },
     breakpoints: {
       768: {
@@ -129,6 +141,18 @@ function bindNavigationBlur() {
   });
 }
 
+function bindOpenModal() {
+  list?.addEventListener('click', event => {
+    const button = event.target.closest('.js-open-popular-modal');
+    if (!button) return;
+
+    const { id } = button.dataset;
+    if (!id) return;
+
+    openModal(id);
+  });
+}
+
 async function initPopularProducts() {
   if (!list || !prevBtn || !nextBtn || !paginationEl) return;
 
@@ -144,6 +168,7 @@ async function initPopularProducts() {
     renderProducts(products);
     initSwiper();
     bindNavigationBlur();
+    bindOpenModal();
   } catch (error) {
     console.error(error);
     list.innerHTML =

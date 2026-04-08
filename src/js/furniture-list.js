@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     categoryButtons: document.querySelectorAll('.category-btn'),
     loadMoreBtn: document.querySelector('.load-more-btn'),
     loader: document.querySelector('.furniture-loader'),
+    loaderMore: document.querySelector('.furniture-loader-more'),
     modal: document.querySelector('#modal'),
   };
 
@@ -16,7 +17,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     !refs.furnitureList ||
     !refs.categoryButtons.length ||
     !refs.loadMoreBtn ||
-    !refs.loader
+    !refs.loader ||
+    !refs.loaderMore
   ) {
     console.error('Не знайдено елементи секції furniture');
     return;
@@ -34,6 +36,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   function hideLoader() {
     refs.loader.classList.add('is-hidden');
+  }
+
+  function showLoadMoreLoader() {
+    refs.loaderMore.classList.remove('is-hidden');
+  }
+
+  function hideLoadMoreLoader() {
+    refs.loaderMore.classList.add('is-hidden');
   }
 
   function showLoadMoreButton() {
@@ -235,7 +245,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   async function onLoadMoreClick(event) {
     event.currentTarget.blur();
 
-    showLoader();
+    hideLoadMoreButton();
+    showLoadMoreLoader();
 
     try {
       currentPage += 1;
@@ -260,11 +271,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
       console.error('Помилка завантаження наступної порції:', error);
       currentPage -= 1;
+
+      if (totalLoadedItems < totalItems) {
+        showLoadMoreButton();
+      }
     } finally {
-      hideLoader();
+      hideLoadMoreLoader();
     }
   }
-
   function addEventListeners() {
     refs.categoryButtons.forEach(button => {
       button.addEventListener('click', onCategoryButtonClick);

@@ -204,6 +204,7 @@
 }
 
 .overlay.is-open {
+  top: 68px; /* Відступ від верхнього краю хедера */
   opacity: 1;
   visibility: visible;
 }

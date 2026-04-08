@@ -1,123 +1,93 @@
-(() => {
-  const mobileMenu = document.querySelector('.js-menu-container');
-  const openMenuBtn = document.querySelector('.js-open-menu');
-  const burgerIcon = openMenuBtn.querySelector('use');
-  const menuLinks = mobileMenu.querySelectorAll('.nav-link, .mobile-order-btn');
-  const overlay = document.querySelector('.overlay');
+const header = document.querySelector('.mobile-menu-content');
+const burgerBtn = document.querySelector('.js-open-menu');
+const closeBtn = document.querySelector('.close-header-mobile');
+const headerCloseMobile = document.querySelector('.mobile-menu-list');
+const headerShadov = document.querySelector('.overlay');
+const headerDescScroll = document.querySelector('.nav-list');
+const toggleMenu = () => {
+  if (document.body.style.overflow !== 'hidden') {
+    document.body.style.overflow = 'hidden';
+  } else {
+    document.body.style.overflow = '';
+  }
 
-  // Змінні для зберігання обробників подій
-  let keydownHandler = null;
-  let clickOutsideHandler = null;
-
-  // Отримуємо базовий шлях до спрайту з існуючого елемента
-  const getSpritePath = () => {
-    const currentHref = burgerIcon.getAttribute('href');
-    return currentHref.split('#')[0]; // Забираємо #icon-назву, залишаємо шлях
-  };
-
-  // Створення обробника клавіші Escape
-  const createKeydownHandler = () => event => {
-    if (event.key === 'Escape') {
-      closeMenu();
-    }
-  };
-
-  // Створення обробника кліку поза меню
-  const createClickOutsideHandler = () => event => {
-    const isClickInsideMenu = mobileMenu.contains(event.target);
-    const isClickOnMenuButton = openMenuBtn.contains(event.target);
-
-    if (!isClickInsideMenu && !isClickOnMenuButton) {
-      closeMenu();
-    }
-  };
-
-  // Додавання слухачів при відкритті меню
-  const addEventListeners = () => {
-    // Створюємо обробники якщо їх ще немає
-    if (!keydownHandler) {
-      keydownHandler = createKeydownHandler();
-    }
-    if (!clickOutsideHandler) {
-      clickOutsideHandler = createClickOutsideHandler();
-    }
-
-    // Додаємо слухачі
-    document.addEventListener('keydown', keydownHandler);
-    document.addEventListener('click', clickOutsideHandler);
-  };
-
-  // Видалення слухачів при закритті меню
-  const removeEventListeners = () => {
-    if (keydownHandler) {
-      document.removeEventListener('keydown', keydownHandler);
-    }
-    if (clickOutsideHandler) {
-      document.removeEventListener('click', clickOutsideHandler);
-    }
-  };
-
-  const closeMenu = () => {
-    const spritePath = getSpritePath();
-    mobileMenu.classList.remove('is-open');
-    openMenuBtn.setAttribute('aria-expanded', false);
-    burgerIcon.setAttribute('href', `${spritePath}#icon-burger`);
-    openMenuBtn.setAttribute('aria-label', 'Перемикач мобільного меню');
-    document.body.classList.remove('no-scroll');
-    overlay.classList.remove('is-open');
-
-    // Видаляємо слухачі подій
-    removeEventListeners();
-  };
-
-  const openMenu = () => {
-    const spritePath = getSpritePath();
-    mobileMenu.classList.add('is-open');
-    openMenuBtn.setAttribute('aria-expanded', true);
-    burgerIcon.setAttribute('href', `${spritePath}#icon-close`);
-    openMenuBtn.setAttribute('aria-label', 'Закрити мобільне меню');
-    document.body.classList.add('no-scroll');
-    overlay.classList.add('is-open');
-
-    // Додаємо слухачі подій
-    addEventListeners();
-  };
-
-  const toggleMenu = () => {
-    const isMenuOpen = mobileMenu.classList.contains('is-open');
-
-    if (isMenuOpen) {
-      closeMenu();
-    } else {
-      openMenu();
-    }
-  };
-
-  // Відкриття та закриття меню по кнопці
-  openMenuBtn.addEventListener('click', toggleMenu);
-
-  // Закриття меню при натисканні на посилання
-  menuLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      if (mobileMenu.classList.contains('is-open')) {
-        closeMenu();
+  headerShadov.classList.toggle('is-open');
+  header.classList.toggle('is-open');
+  burgerBtn.classList.toggle('zib-zap-btn');
+  closeBtn.classList.toggle('zib-zap-btn');
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop,
+          behavior: 'smooth',
+        });
       }
     });
   });
+};
 
-  // Закриття меню при зміні розміру екрана на десктопний
-  const mediaQuery = window.matchMedia('(min-width: 1440px)');
-  const handleMediaChange = e => {
-    if (!e.matches) return;
-    if (!mobileMenu.classList.contains('is-open')) return;
-    closeMenu();
-  };
-
-  mediaQuery.addEventListener('change', handleMediaChange);
-
-  // Очищення при вивантаженні сторінки
-  window.addEventListener('beforeunload', () => {
-    removeEventListeners();
-    mediaQuery.removeEventListener('change', handleMediaChange);
+const toggleMenuFromShadov = async e => {
+  document.body.style.overflow = '';
+  e.preventDefault();
+  headerShadov.classList.toggle('is-open');
+  header.classList.toggle('is-open');
+  burgerBtn.classList.toggle('zib-zap-btn');
+  closeBtn.classList.toggle('zib-zap-btn');
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        window.scrollTo({
+          top: target.offsetTop,
+          behavior: 'smooth',
+        });
+      }
+    });
   });
-})();
+};
+
+document.querySelectorAll('a[href*="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function (e) {
+    const url = new URL(this.href);
+    const current = new URL(window.location.href);
+
+    const isSamePage =
+      url.pathname === current.pathname && url.origin === current.origin;
+
+    const isRoot =
+      current.pathname.endsWith('/') || current.pathname.endsWith('index.html');
+
+    const hash = url.hash;
+
+    if (!hash || hash === '#') return;
+
+    if (isSamePage && isRoot) {
+      const target = document.querySelector(hash);
+
+      if (target) {
+        e.preventDefault();
+
+        window.scrollTo({
+          top: target.offsetTop - 80,
+          behavior: 'smooth',
+        });
+      }
+    }
+  });
+});
+burgerBtn.addEventListener('click', toggleMenu);
+closeBtn.addEventListener('click', toggleMenu);
+headerShadov.addEventListener('click', toggleMenuFromShadov);
+for (const item of headerCloseMobile.children) {
+  const link = item.querySelector('a');
+  if (link) link.addEventListener('click', toggleMenu);
+}
+
+for (const item of headerDescScroll.children) {
+  const link = item.querySelector('a');
+  if (link) link.addEventListener('click', toggleMenu);
+}

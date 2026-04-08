@@ -122,14 +122,14 @@
   justify-content: center;
   width: 48px;
   height: 48px;
-  padding: 0;
+  padding: 12px;
   border: 1px solid var(--opacity-neutral-darkest-15);
-  border-radius: 50%;
+  border-radius: 100px;
   background-color: var(--color-neutral-lightest);
   color: var(--color-neutral-darkest);
+  transition: opacity 0.3s ease, box-shadow 0.3s ease,
+    background-color 0.3s ease, color 0.3s ease;
   cursor: pointer;
-  opacity: 1;
-  transition: background-color 0.3s ease, color 0.3s ease, opacity 0.3s ease;
 }
 
 .js-swiper-button-prev svg,
@@ -142,12 +142,16 @@
 .js-swiper-button-prev:hover,
 .js-swiper-button-next:hover,
 .js-swiper-button-prev:focus,
-.js-swiper-button-next:focus,
+.js-swiper-button-next:focus {
+  background-color: var(--color-madang-light);
+  color: var(--color-white);
+  outline: none;
+}
+
 .js-swiper-button-prev:active,
 .js-swiper-button-next:active {
   background-color: var(--color-madang);
   color: var(--color-white);
-  outline: none;
 }
 
 .js-swiper-button-prev.swiper-button-disabled,

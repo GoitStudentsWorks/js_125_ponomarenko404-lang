@@ -6,16 +6,23 @@
     <ul class="categories-list">
       <li class="categories-item">
         <button class="category-btn is-active" type="button" data-name="all">
-          <img
-            src="./img/furniture-list/furniture-showroom-1x.webp"
-            srcset="
-              ./img/furniture-list/furniture-showroom-1x.webp 279w,
-              ./img/furniture-list/furniture-showroom-2x.webp 558w
-            "
-            sizes="(max-width: 767px) 50vw, (max-width: 1439px) 25vw, 14vw"
-            alt="Всі товари"
-            decoding="async"
-          />
+          <picture>
+            <source
+              srcset="
+                ./img/furniture-list/furniture-showroom-1x.webp 279w,
+                ./img/furniture-list/furniture-showroom-2x.webp 558w
+              "
+              sizes="(max-width: 767px) 50vw, (max-width: 1439px) 25vw, 14vw"
+              type="image/webp"
+            />
+            <img
+              src="./img/furniture-list/furniture-showroom-1x.webp"
+              alt="Всі товари"
+              width="279"
+              height="205"
+              decoding="async"
+            />
+          </picture>
           <span>Всі товари</span>
         </button>
       </li>

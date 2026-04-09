@@ -1,8 +1,8 @@
-const header = document.querySelector('.mobile-menu-content');
+const header = document.querySelector('.mobile-menu-content-header');
 const burgerBtn = document.querySelector('.js-open-menu');
 const closeBtn = document.querySelector('.close-header-mobile');
 const headerCloseMobile = document.querySelector('.mobile-menu-list');
-const headerShadov = document.querySelector('.overlay');
+const headerShadov = document.querySelector('.overlay-shadov');
 const headerDescScroll = document.querySelector('.nav-list');
 const toggleMenu = () => {
   if (document.body.style.overflow !== 'hidden') {

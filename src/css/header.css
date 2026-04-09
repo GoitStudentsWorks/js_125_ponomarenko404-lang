@@ -62,7 +62,11 @@
   pointer-events: none;
 }
 
-.mobile-menu-content {
+.mobile-menu-content-header {
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  z-index: 10000;
   visibility: hidden;
   height: 100vh;
   display: flex;
@@ -154,10 +158,24 @@
 .zib-zap-btn {
   display: none;
 }
+.is-open {
+  visibility: visible !important;
+}
 /* --- Планшет (Tablet) --- */
 @media screen and (min-width: 768px) {
   .logo-link {
     font-size: 22px;
+  }
+
+  .mobile-menu-content-header {
+    flex-flow: column wrap;
+    place-content: center;
+    align-items: center;
+    width: 249px;
+    height: fit-content;
+    display: flex;
+    right: 0;
+    padding: 24px 32px;
   }
 
   .mobile-menu-container {
@@ -176,16 +194,6 @@
     min-width: 200px; /* Мінімальна ширина для читабельності */
   }
 
-  .mobile-menu-content {
-    z-index: 1000;
-    position: absolute;
-    background-color: #fff;
-    width: 249px;
-    right: 0;
-    height: fit-content;
-    padding: 24px 32px;
-  }
-
   .mobile-menu-header {
     display: none;
   }
@@ -198,19 +206,19 @@
     min-width: 185px;
   }
 
-  .overlay {
+  .overlay-shadov {
     position: absolute;
     width: 100%;
     height: 100vh;
     background: var(--opacity-neutral-darkest-50);
     visibility: hidden;
     transition: opacity 250ms ease;
-    z-index: 998;
+    z-index: 9999;
   }
 }
 
 @media screen and (min-width: 900px) {
-  .mobile-menu-content {
+  .mobile-menu-content-header {
     width: 298px;
     padding: 24px 98px 24px 25px;
   }
@@ -220,10 +228,6 @@
   }
 }
 
-.is-open {
-  visibility: visible;
-}
-
 /* --- Десктоп (Desktop) --- */
 @media screen and (min-width: 1440px) {
   .burger-menu-btn,
@@ -231,11 +235,11 @@
     display: none;
   }
 
-  .overlay {
+  .overlay-shadov {
     visibility: hidden;
   }
 
-  .mobile-menu-content {
+  .mobile-menu-content-header {
     visibility: hidden;
   }
 

@@ -216,6 +216,8 @@ const initForm = () => {
       localStorage.removeItem('orderPhone');
       localStorage.removeItem('orderName');
       localStorage.removeItem('orderComment');
+      localStorage.removeItem('orderModelId');
+      localStorage.removeItem('orderColor');
 
       fields.forEach(({ input, error }) => {
         input.classList.remove('is-invalid');

@@ -79,9 +79,14 @@ document.querySelectorAll('a[href*="#"]').forEach(anchor => {
     }
   });
 });
-document.addEventListener('keydown', function (event) {
+document.addEventListener('keyup', function (event) {
   if (event.key === 'Escape') {
-    toggleMenu();
+    for (let i = 0; i < document.querySelectorAll('.is-open').length; ) {
+      document.querySelectorAll('.is-open')[i].classList.remove('is-open');
+    }
+    burgerBtn.classList.remove('zib-zap-btn');
+    closeBtn.classList.add('zib-zap-btn');
+    document.body.style.overflow = '';
   }
 });
 burgerBtn.addEventListener('click', toggleMenu);

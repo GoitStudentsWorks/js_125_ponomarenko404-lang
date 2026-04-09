@@ -179,6 +179,9 @@ export async function openModal(id) {
 }
 
 export function closeModal() {
+  if (modal.contains(document.activeElement)) {
+    document.activeElement.blur();
+  }
   modal.classList.remove('is-open');
   modal.setAttribute('aria-hidden', 'true');
   document.body.style.overflow = '';

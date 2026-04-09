@@ -1,11 +1,12 @@
 import axios from 'axios';
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
-import { openModal } from './furniture-modal.js';
+import { Navigation, Pagination, Keyboard } from 'swiper/modules';
 
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+
+import { openModal } from './furniture-modal.js';
 
 const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
 const BASE_ORIGIN = 'https://furniture-store-v2.b.goit.study';
@@ -77,7 +78,11 @@ function renderProducts(products) {
             <p class="popular-card-price">${product.price} грн</p>
           </div>
 
-          <button class="popular-card-btn btn-white" type="button" data-id="${product._id}">
+          <button
+            class="popular-card-btn btn-white js-open-popular-modal"
+            type="button"
+            data-id="${product._id || product.id || ''}"
+          >
             Детальніше
           </button>
         </li>
@@ -175,10 +180,3 @@ async function initPopularProducts() {
 }
 
 initPopularProducts();
-
-
-list.addEventListener('click', e => {
-  const btn = e.target.closest('[data-id]');
-  if (!btn) return;
-  openModal(btn.dataset.id);
-});

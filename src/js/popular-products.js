@@ -7,8 +7,6 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { openModal } from './furniture-modal.js';
-
 const BASE_URL = 'https://furniture-store-v2.b.goit.study/api';
 const BASE_ORIGIN = 'https://furniture-store-v2.b.goit.study';
 

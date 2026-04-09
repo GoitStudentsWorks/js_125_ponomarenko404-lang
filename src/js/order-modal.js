@@ -76,7 +76,7 @@ const closeOrderModal = () => {
   }
 
   elements.backdrop.classList.add('is-hidden');
-  elements.backdrop.setAttribute('aria-hidden', 'true');
+  // elements.backdrop.setAttribute('aria-hidden', 'true');
   syncBodyScrollLock();
 };
 

@@ -8,8 +8,9 @@
 .nav-container {
   display: flex;
   justify-content: space-between;
-  align-items: center;
   position: relative;
+  width: 100%;
+  align-items: center;
 }
 
 /* Додано стилі для logo-link */
@@ -54,23 +55,23 @@
   background-color: var(--color-white);
   z-index: 999;
   transform: translateX(100%);
-  transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+  transition:
+    transform 250ms ease-in-out,
+    opacity 250ms ease-in-out;
   opacity: 0;
   pointer-events: none;
 }
 
-.mobile-menu-container.is-open {
-  transform: translateX(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.mobile-menu-content {
-  height: 100%;
+.mobile-menu-content-header {
+  background-color: #fff;
+  position: absolute;
+  width: 100%;
+  z-index: 10000;
+  visibility: hidden;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   padding-top: 32px;
-  padding-bottom: 16px;
 }
 
 .mobile-menu-header {
@@ -87,16 +88,21 @@
   line-height: 0;
 }
 
+.close-header-mobile {
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+
 .close-icon {
   stroke: var(--color-neutral-darkest);
 }
 
 .mobile-menu-list {
-  text-align: center;
-}
-
-.mobile-menu-list li:not(:last-child) {
-  margin-bottom: 24px;
+  display: flex;
+  gap: 32px;
+  flex-direction: column;
+  align-items: center;
 }
 
 .mobile-menu-list .nav-link {
@@ -114,19 +120,24 @@
 }
 
 .mobile-order-btn {
-  display: block;
-  margin-top: 32px;
-  padding: 8px 123px;
-  text-align: center;
   cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: center;
+  min-width: 295px;
+  max-width: 335px;
 }
 
 .mobile-order-btn:hover,
 .mobile-order-btn:focus {
   opacity: 0.5;
   background: var(--color-madang);
-  box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5),
-    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--opacity-neutral-darkest-15),
+  box-shadow:
+    0 1px 2px 0 var(--opacity-neutral-darkest-5),
+    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px var(--opacity-neutral-darkest-15),
     inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
     inset 0 32px 24px 0 var(--opacity-white-5);
   transform: translateY(-2px);
@@ -135,17 +146,36 @@
 .mobile-order-btn:active {
   opacity: 1;
   background: var(--color-madang);
-  box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5),
-    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2), inset 0 0 0 1px var(--opacity-neutral-darkest-15),
+  box-shadow:
+    0 1px 2px 0 var(--opacity-neutral-darkest-5),
+    inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
+    inset 0 0 0 1px var(--opacity-neutral-darkest-15),
     inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
     inset 0 32px 24px 0 var(--opacity-white-5);
   transform: translateY(0);
 }
 
+.zib-zap-btn {
+  display: none;
+}
+.is-open {
+  visibility: visible !important;
+}
 /* --- Планшет (Tablet) --- */
 @media screen and (min-width: 768px) {
   .logo-link {
     font-size: 22px;
+  }
+
+  .mobile-menu-content-header {
+    flex-flow: column wrap;
+    place-content: center;
+    align-items: center;
+    width: 249px;
+    height: fit-content;
+    display: flex;
+    right: 0;
+    padding: 24px 32px;
   }
 
   .mobile-menu-container {
@@ -156,20 +186,12 @@
     width: 249px;
     height: 396px;
     transform: translateX(+20px);
-    transition: transform 250ms ease-in-out, opacity 250ms ease-in-out;
+    transition:
+      transform 250ms ease-in-out,
+      opacity 250ms ease-in-out;
     /* Додаємо обмеження, щоб меню не виходило за межі екрана */
     max-width: calc(100vw - 64px); /* Враховуємо відступи контейнера */
     min-width: 200px; /* Мінімальна ширина для читабельності */
-  }
-
-  .mobile-menu-container.is-open {
-    transform: translateY(0);
-  }
-
-  .mobile-menu-content {
-    padding-top: 24px;
-    padding-left: 16px;
-    padding-right: 16px;
   }
 
   .mobile-menu-header {
@@ -177,44 +199,48 @@
   }
 
   .mobile-menu-list {
-    text-align: right;
-    margin-bottom: 32px;
-    margin-right: 16px;
-  }
-
-  .mobile-menu-list li:not(:last-child) {
-    margin-bottom: 32px;
+    align-items: end;
   }
 
   .mobile-order-btn {
-    width: 185px;
-    height: 42px;
-    padding: 8px 20px;
-    margin: 0 auto;
+    min-width: 185px;
   }
 
-  .overlay {
-  position: fixed;
-  inset: 0;
-  background: var(--opacity-neutral-darkest-50);
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity 250ms ease;
-  z-index: 998;
+  .overlay-shadov {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    background: var(--opacity-neutral-darkest-50);
+    visibility: hidden;
+    transition: opacity 250ms ease;
+    z-index: 9999;
+  }
 }
 
-.overlay.is-open {
-  top: 68px; /* Відступ від верхнього краю хедера */
-  opacity: 1;
-  visibility: visible;
-}
+@media screen and (min-width: 900px) {
+  .mobile-menu-content-header {
+    width: 298px;
+    padding: 24px 98px 24px 25px;
+  }
+
+  .mobile-order-btn {
+    min-width: 175px;
+  }
 }
 
 /* --- Десктоп (Desktop) --- */
 @media screen and (min-width: 1440px) {
   .burger-menu-btn,
-  .mobile-menu-container {
+  .close-header-mobile {
     display: none;
+  }
+
+  .overlay-shadov {
+    visibility: hidden;
+  }
+
+  .mobile-menu-content-header {
+    visibility: hidden;
   }
 
   .desktop-nav,
@@ -226,11 +252,7 @@
   .nav-list {
     display: flex;
     gap: 32px;
-  }
-
-  .desktop-nav {
-    margin-left: auto;
-    margin-right: 40px;
+    align-items: center;
   }
 
   .desktop-order-btn {
@@ -244,7 +266,8 @@
   .desktop-order-btn:focus {
     opacity: 0.5;
     background: var(--color-madang);
-    box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5),
+    box-shadow:
+      0 1px 2px 0 var(--opacity-neutral-darkest-5),
       inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
       inset 0 0 0 1px var(--opacity-neutral-darkest-15),
       inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),
@@ -255,7 +278,8 @@
   .desktop-order-btn:active {
     opacity: 1;
     background: var(--color-madang);
-    box-shadow: 0 1px 2px 0 var(--opacity-neutral-darkest-5),
+    box-shadow:
+      0 1px 2px 0 var(--opacity-neutral-darkest-5),
       inset 0 -2px 1px 0 rgba(0, 0, 0, 0.2),
       inset 0 0 0 1px var(--opacity-neutral-darkest-15),
       inset 0 2px 1px 0 rgba(255, 255, 255, 0.25),

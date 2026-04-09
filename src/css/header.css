@@ -63,6 +63,7 @@
 }
 
 .mobile-menu-content-header {
+  top: 66px;
   background-color: #fff;
   position: absolute;
   width: 100%;

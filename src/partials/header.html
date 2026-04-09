@@ -1,44 +1,77 @@
 <header class="navbar">
-    <div class="container nav-container">
-        <a href="./index.html" class="logo-link">
-            <svg class="company-icon" width="159" height="35" aria-label="Логотип компанії">
-                <use href="./svg/header.svg#company-logo"></use>
-            </svg>
-        </a>
+  <div class="container">
+    <div class="nav-container">
+      <a href="./index.html" class="logo-link">
+        <svg
+          class="company-icon"
+          width="159"
+          height="35"
+          aria-label="Логотип компанії"
+        >
+          <use href="./svg/header.svg#company-logo"></use>
+        </svg>
+      </a>
 
-        <nav class="desktop-nav">
-            <ul class="nav-list">
-                <li><a href="#furniture" class="nav-link">Наші меблі</a></li>
-                <li><a href="#about" class="nav-link">Про нас</a></li>
-                <li><a href="#popular-products" class="nav-link">Популярне</a></li>
-                <li><a href="#faq" class="nav-link">Часті питання</a></li>
-                <li><a href="#feedback-section" class="nav-link">Відгуки</a></li>
-            </ul>
-        </nav>
+      <nav class="desktop-nav">
+        <ul class="nav-list">
+          <li><a href="#furniture" class="nav-link">Наші меблі</a></li>
+          <li><a href="#about" class="nav-link">Про нас</a></li>
+          <li><a href="#popular-products" class="nav-link">Популярне</a></li>
+          <li><a href="#faq" class="nav-link">Часті питання</a></li>
+          <li><a href="#feedback-section" class="nav-link">Відгуки</a></li>
+          <li>
+            <a href="#furniture" class="desktop-order-btn btn-red"
+              >До покупок</a
+            >
+          </li>
+        </ul>
+      </nav>
 
-        <a href="#furniture" class="desktop-order-btn btn-red">До покупок</a>
+      <button
+        type="button"
+        class="burger-menu-btn js-open-menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg
+          class="burger-icon"
+          width="28"
+          height="28"
+          aria-label="Перемикач мобільного меню"
+        >
+          <use href="./svg/header.svg#icon-burger"></use>
+        </svg>
+      </button>
+      <button class="close-header-mobile zib-zap-btn">
+        <svg
+          class="burger-icon"
+          width="28"
+          height="28"
+          aria-label="Закривач мобільного меню"
+        >
+          <use href="./svg/header.svg#icon-close"></use>
+        </svg>
+      </button>
 
-        <button type="button" class="burger-menu-btn js-open-menu" aria-expanded="false" aria-controls="mobile-menu">
-            <svg class="burger-icon" width="28" height="28" aria-label="Перемикач мобільного меню">
-                <use href="./svg/header.svg#icon-burger"></use>
-            </svg>
-        </button>
-
-        <div class="mobile-menu-container js-menu-container" id="mobile-menu">
-            <div class="container mobile-menu-content">
-                <nav>
-                    <ul class="mobile-menu-list">
-                        <li><a href="#furniture" class="nav-link">Наші меблі</a></li>
-                        <li><a href="#about" class="nav-link">Про нас</a></li>
-                        <li><a href="#popular-products" class="nav-link">Популярне</a></li>
-                        <li><a href="#faq" class="nav-link">Часті питання</a></li>
-                        <li><a href="#feedback-section" class="nav-link">Відгуки</a></li>
-                    </ul>
-                </nav>
-                <a href="#furniture" class="mobile-order-btn btn-red">До покупок</a>
-            </div>
-        </div>
-
+      <div
+        class="mobile-menu-container js-menu-container"
+        id="mobile-menu"
+      ></div>
     </div>
-    <div class="overlay"></div>
+  </div>
 </header>
+<div class="mobile-menu-content-header">
+  <nav>
+    <ul class="mobile-menu-list">
+      <li><a href="#furniture" class="nav-link">Наші меблі</a></li>
+      <li><a href="#about" class="nav-link">Про нас</a></li>
+      <li><a href="#popular-products" class="nav-link">Популярне</a></li>
+      <li><a href="#faq" class="nav-link">Часті питання</a></li>
+      <li><a href="#feedback-section" class="nav-link">Відгуки</a></li>
+      <li>
+        <a href="#furniture" class="mobile-order-btn btn-red">До покупок</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+<div class="overlay-shadov"></div>

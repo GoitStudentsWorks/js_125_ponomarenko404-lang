@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build --base=/project-Domino/",
+    "build": "vite build --base=/js_125_ponomarenko404-lang/",
     "preview": "vite preview"
   },
   "devDependencies": {
